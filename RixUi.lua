@@ -3250,3 +3250,123 @@ spawn(function()
         end
     end
 				end);
+				local v68 = v16.Sa:AddDropdown("DropdownMethodFram", {
+    Title = "Select Method Fram",
+    Description = "",
+    Values = {
+        "Level",
+        "Bone",
+        "Cake Prince"
+    },
+    Multi = false,
+    Default = 1
+});
+v68:SetValue("");
+v68:OnChanged(function(v236)
+    _G.MethodFram = v236;
+end);
+local v69 = v16.Sa:AddToggle("ToggleStartFram", {
+        Title = "Start Fram",
+        Description = "Choose Method To Fram",
+        Default = false
+    });
+    local v493 = true;
+				v69:SetValue(_G.MethodFram);
+    v69:OnChanged(function(v575)
+		--Level--
+	spawn(function()
+    while task.wait(.1) do
+    if SelectMethodFram and TypeMethodFram == 'Level' then
+      pcall(function()
+                CheckLevel();
+                if (not string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text, NameMon) or (game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false)) then
+                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest");
+                    Tween(CFrameQ);
+                    if ((CFrameQ.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 5) then
+                        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StartQuest", NameQuest, QuestLv);
+                    end
+                elseif (string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text, NameMon) or (game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == true)) then
+                    for v1432, v1433 in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                        if (v1433:FindFirstChild("Humanoid") and v1433:FindFirstChild("HumanoidRootPart") and (v1433.Humanoid.Health > 0)) then
+                            if (v1433.Name == Ms) then
+                                repeat
+                                    wait(_G.Fast_Delay);
+                                    AttackNoCoolDown();
+                                    bringmob = true;
+                                    AutoHaki();
+                                    EquipTool(SelectWeapon);
+                                    Tween(v1433.HumanoidRootPart.CFrame * Pos);
+                                    v1433.HumanoidRootPart.Size = Vector3.new(60, 60, 60);
+                                    v1433.HumanoidRootPart.Transparency = 1;
+                                    v1433.Humanoid.JumpPower = 0;
+                                    v1433.Humanoid.WalkSpeed = 0;
+                                    v1433.HumanoidRootPart.CanCollide = false;
+                                    FarmPos = v1433.HumanoidRootPart.CFrame;
+                                    MonFarm = v1433.Name;
+                                until not _G.AutoLevel or not v1433.Parent or (v1433.Humanoid.Health <= 0) or not game:GetService("Workspace").Enemies:FindFirstChild(v1433.Name) or (game.Players.LocalPlayer.PlayerGui.Main.Quest.Visible == false)
+                                bringmob = false;
+                            end
+                        end
+                    end
+                    for v1434, v1435 in pairs(game:GetService("Workspace")['_WorldOrigin'].EnemySpawns:GetChildren()) do
+                        if string.find(v1435.Name, NameMon) then
+                            if ((game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v1435.Position).Magnitude >= 10) then
+                                Tween(v1435.HumanoidRootPart.CFrame * Pos);
+                            end
+                        end
+                    end
+                end
+            end);
+        end
+    end
+				end);
+			--Bone--
+			local v487 = CFrame.new(- 9515.75, 174.8521728515625, 6079.40625);
+    spawn(function()
+        while task.wait(.1) do
+									if SelectMethodFram and TypeMethodFram == 'Bone' then
+                pcall(function()
+                    local v894 = game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text;
+                    if not string.find(v894, "Demonic Soul") then
+                        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest");
+                    end
+                    if (game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false) then
+                        Tween(v487);
+                        if ((v487.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 3) then
+                            game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StartQuest", "HauntedQuest2", 1);
+                        end
+                    elseif (game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == true) then
+                        if (game:GetService("Workspace").Enemies:FindFirstChild("Reborn Skeleton") or game:GetService("Workspace").Enemies:FindFirstChild("Living Zombie") or game:GetService("Workspace").Enemies:FindFirstChild("Demonic Soul") or game:GetService("Workspace").Enemies:FindFirstChild("Posessed Mummy")) then
+                            for v1661, v1662 in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                                if (v1662:FindFirstChild("HumanoidRootPart") and v1662:FindFirstChild("Humanoid") and (v1662.Humanoid.Health > 0)) then
+                                    if ((v1662.Name == "Reborn Skeleton") or (v1662.Name == "Living Zombie") or (v1662.Name == "Demonic Soul") or (v1662.Name == "Posessed Mummy")) then
+                                        if string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text, "Demonic Soul") then
+                                            repeat
+                                                wait(_G.Fast_Delay);
+                                                AttackNoCoolDown();
+                                                AutoHaki();
+                                                bringmob = true;
+                                                EquipTool(SelectWeapon);
+                                                Tween(v1662.HumanoidRootPart.CFrame * Pos);
+                                                v1662.HumanoidRootPart.Size = Vector3.new(60, 60, 60);
+                                                v1662.HumanoidRootPart.Transparency = 1;
+                                                v1662.Humanoid.JumpPower = 0;
+                                                v1662.Humanoid.WalkSpeed = 0;
+                                                v1662.HumanoidRootPart.CanCollide = false;
+                                                FarmPos = v1662.HumanoidRootPart.CFrame;
+                                                MonFarm = v1662.Name;
+                                            until not _G.AutoBone or (v1662.Humanoid.Health <= 0) or not v1662.Parent or (game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false)
+                                        else
+                                            game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest");
+                                            bringmob = false;
+                                        end
+                                    end
+                                end
+                            end
+                        else
+                        end
+                    end
+                end);
+            end
+        end
+								end);
