@@ -2532,3 +2532,82 @@ spawn(function()
         end
     end
 				end)
+spawn(function()
+    while task.wait(.1) do
+    if StartFramMethod and TypeMethodFram == 'Cake Prince' then
+    pcall(function()
+                local CakeCFrame = CFrame.new(-1749.61572265625, 538.0447998046875, -12402.7451171875)
+
+                if game.ReplicatedStorage:FindFirstChild("Cake Prince") or game.Workspace.Enemies:FindFirstChild("Cake Prince") then
+                    _G.FocusedBoss = "Cake Prince"
+
+                    if game.Workspace.Enemies:FindFirstChild("Cake Prince") then
+                        for i, v in pairs(game.Workspace.Enemies:GetChildren()) do
+                            if v.Name == "Cake Prince" then
+                                repeat
+                                    wait(_G.Fast_Delay)
+                                    AttackNoCoolDown()
+                                    AutoHaki()
+                                    EquipTool(SelectWeapon)
+                                    v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
+                                    v.HumanoidRootPart.CanCollide = false
+                                    Tween(v.HumanoidRootPart.CFrame * Pos)
+                                until _G.CakePrince == false or not v.Parent or v.Humanoid.Health <= 0
+                                bringmob = false
+                            end
+                        end
+                    end
+                elseif game.Workspace.Enemies:FindFirstChild("Dough King") then
+                    _G.FocusedBoss = "Dough King"
+
+                    for i, v in pairs(game.Workspace.Enemies:GetChildren()) do
+                        if v.Name == "Dough King" then
+                            repeat
+                                wait(_G.Fast_Delay)
+                                AttackNoCoolDown()
+                                AutoHaki()
+                                EquipTool(SelectWeapon)
+                                v.HumanoidRootPart.CanCollide = false
+                                v.Humanoid.WalkSpeed = 0
+                                v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
+                                Tween(v.HumanoidRootPart.CFrame * Pos)
+                            until not _G.AutoCakeV2 or not v.Parent or v.Humanoid.Health <= 0
+                            bringmob = false
+                        end
+                    end
+                elseif not _G.FocusedBoss then
+                    if game.Workspace.Enemies:FindFirstChild("Baking Staff") 
+                        or game.Workspace.Enemies:FindFirstChild("Head Baker") 
+                        or game.Workspace.Enemies:FindFirstChild("Cake Guard") 
+                        or game.Workspace.Enemies:FindFirstChild("Cookie Crafter") then
+                        
+                        for i, v in pairs(game.Workspace.Enemies:GetChildren()) do
+                            if (v.Name == "Baking Staff" or v.Name == "Head Baker" 
+                                or v.Name == "Cake Guard" or v.Name == "Cookie Crafter") 
+                                and v.Humanoid.Health > 0 then
+                                
+                                repeat
+                                    wait(_G.Fast_Delay)
+                                    AttackNoCoolDown()
+                                    AutoHaki()
+                                    bringmob = true
+                                    EquipTool(SelectWeapon)
+                                    v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
+                                    FarmPos = v.HumanoidRootPart.CFrame
+                                    MonFarm = v.Name
+                                    Tween(v.HumanoidRootPart.CFrame * Pos)
+                                until _G.CakePrince == false 
+                                    or game.ReplicatedStorage:FindFirstChild("Cake Prince") 
+                                    or not v.Parent 
+                                    or v.Humanoid.Health <= 0
+                                bringmob = false
+                            end
+                        end
+                    else
+                        Tween(CakeCFrame)
+                    end
+                end
+            end)
+        end
+    end
+				end)
