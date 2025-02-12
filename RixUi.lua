@@ -2484,10 +2484,10 @@ spawn(function()
         end
         end)    
 								
-    local BoneCFrame = CFrame.new(-9515.75, 174.8521728515625, 6079.40625)
-    local BoneCFrame2 = CFrame.new(-9359.453125, 141.32679748535156, 5446.81982421875)
     elseif StartFramMethod and TypeMastery == 'Bone' then
     pcall(function()
+				local BoneCFrame = CFrame.new(-9515.75, 174.8521728515625, 6079.40625)
+    local BoneCFrame2 = CFrame.new(-9359.453125, 141.32679748535156, 5446.81982421875)
       local QuestTitle = game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text
                 if not string.find(QuestTitle, "Demonic Soul") then
                     game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
