@@ -27,10 +27,10 @@ Fluent:Notify({
 				})
 				
 local Tabs = {
-    Shop = Window:AddTab({ Title = "Shop" }),
     Sf = Window:AddTab({ Title = "Setting Fram" }),
-    Lp = Window:AddTab({ Title = "Local Player" }),
     AM = Window:AddTab({ Title = "Auto Fram" }),
+    Lp = Window:AddTab({ Title = "Local Player" }),
+    Shop = Window:AddTab({ Title = "Shop" }),
     Sa = Window:AddTab({ Title = "Stack Fram" }),
     St = Window:AddTab({ Title = "Status" }),
     Of = Window:AddTab({ Title = "Other Fram" }),
@@ -2422,28 +2422,71 @@ spawn(function()
     end
 end)
 
-Tabs.Shop:AddParagraph({
+Tabs.Sf:AddParagraph({
     Title = "",
-    Content = "Shopping"
+    Content = "Setting Framing"
 				})
 				
-				local ToggleRandomBone = Tabs.Shop:AddToggle("ToggleRandomBone", {Title = "Random Bone",Description = "", Default = false })
-ToggleRandomBone:OnChanged(function(Value)  
-		_G.AutoRandomBone = Value
+				local DropdownSelectWeapon = Tabs.Sf:AddDropdown("DropdownSelectWeapon", {
+    Title = "Select Weapons",
+    Description = "",
+    Values = {'Melee', 'Sword', 'Blox Fruits', 'Gun', 'All'},
+    Multi = false,
+    Default = 1,
+})
+DropdownSelectWeapon:SetValue('Melee')
+DropdownSelectWeapon:OnChanged(function(Value)
+    ChooseWeapon = Value
 end)
-Options.ToggleRandomBone:SetValue(false)
-	
-spawn(function()
-	while wait() do
-	if _G.AutoRandomBone then
-	local args = {
-	 [1] = "Bones",
-	 [2] = "Buy",
-	 [3] = 1,
-	 [4] = 1
-	}
-	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
-	end
-	end
-	end)
-end
+
+task.spawn(function()
+    while wait() do
+        pcall(function()
+            if ChooseWeapon == "All" then
+                local weapons = {"Melee", "Blox Fruit", "Sword"}
+                for _, weaponType in ipairs(weapons) do
+                    for _, v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+                        if v.ToolTip == weaponType then
+                            if game.Players.LocalPlayer.Backpack:FindFirstChild(tostring(v.Name)) then
+                                SelectWeapon = v.Name
+                                wait(4) 
+                            end
+                        end
+                    end
+                end
+            elseif ChooseWeapon == "Melee" then
+                for _, v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+                    if v.ToolTip == "Melee" then
+                        if game.Players.LocalPlayer.Backpack:FindFirstChild(tostring(v.Name)) then
+                            SelectWeapon = v.Name
+                        end
+                    end
+                end
+            elseif ChooseWeapon == "Sword" then
+                for _, v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+                    if v.ToolTip == "Sword" then
+                        if game.Players.LocalPlayer.Backpack:FindFirstChild(tostring(v.Name)) then
+                            SelectWeapon = v.Name
+                        end
+                    end
+                end
+            elseif ChooseWeapon == "Gun" then
+                for _, v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+                    if v.ToolTip == "Gun" then
+                        if game.Players.LocalPlayer.Backpack:FindFirstChild(tostring(v.Name)) then
+                            SelectWeapon = v.Name
+                        end
+                    end
+                end
+            elseif ChooseWeapon == "Blox Fruit" then
+                for _, v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+                    if v.ToolTip == "Blox Fruit" then
+                        if game.Players.LocalPlayer.Backpack:FindFirstChild(tostring(v.Name)) then
+                            SelectWeapon = v.Name
+                        end
+                    end
+                end
+            end
+        end)
+    end
+				end)
