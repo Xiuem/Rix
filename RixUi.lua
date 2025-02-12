@@ -32,7 +32,7 @@ local Tabs = {
     Lp = Window:AddTab({ Title = "Local Player" }),
     AM = Window:AddTab({ Title = "Auto Fram" }),
     Sa = Window:AddTab({ Title = "Stack Fram" }),
-    Status = Window:AddTab({ Title = "Status" }),
+    St = Window:AddTab({ Title = "Status" }),
     Of = Window:AddTab({ Title = "Other Fram" }),
     Ur = Window:AddTab({ Title = "Upgrade Race" }),
     Fr = Window:AddTab({ Title = "Fruit & Raid" }),
@@ -42,7 +42,13 @@ local Tabs = {
 local Options = Fluent.Options
 
 local id = game.PlaceId
-if id == 2753915549 then First_Sea = true; elseif id == 4442272183 then Second_Sea = true; elseif id == 7449423635 then Third_Sea = true; else game:Shutdown() end;
+if id == 2753915549 then 
+ 	First_Sea = true; 
+	elseif id == 4442272183 then 
+		Second_Sea = true; 
+		elseif id == 7449423635 then 
+			Third_Sea = true; 
+			else game:Shutdown() end;
 
 game:GetService("Players").LocalPlayer.Idled:connect(function()
 	game:GetService("VirtualUser"):Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
@@ -2421,4 +2427,23 @@ Tabs.Shop:AddParagraph({
     Content = "Shopping"
 				})
 				
-				
+				local ToggleRandomBone = Tabs.Shop:AddToggle("ToggleRandomBone", {Title = "Random Bone",Description = "", Default = false })
+ToggleRandomBone:OnChanged(function(Value)  
+		_G.AutoRandomBone = Value
+end)
+Options.ToggleRandomBone:SetValue(false)
+	
+spawn(function()
+	while wait() do
+	if _G.AutoRandomBone then
+	local args = {
+	 [1] = "Bones",
+	 [2] = "Buy",
+	 [3] = 1,
+	 [4] = 1
+	}
+	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+	end
+	end
+	end)
+end
