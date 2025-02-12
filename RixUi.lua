@@ -29,7 +29,7 @@ local Tabs = {
     Shop = Window:AddTab({ Title = "Shop" }),
     Sf = Window:AddTab({ Title = "Setting Fram" }),
     Lp = Window:AddTab({ Title = "Local Player" }),
-    At = Window:AddTab({ Title = "Auto Fram" }),
+    AM = Window:AddTab({ Title = "Auto Fram" }),
     Sa = Window:AddTab({ Title = "Stack Fram" }),
     Status = Window:AddTab({ Title = "Status" }),
     Of = Window:AddTab({ Title = "Other Fram" }),
@@ -2394,31 +2394,6 @@ UICorner.Parent = ImageButton
 UIStroke.Color = Color3.fromRGB(255, 255, 255)
 UIStroke.Parent = ImageButton
 
-local rotateTween = TweenService:Create(ImageButton, TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Rotation = 360})
-
-ImageButton.MouseButton1Down:Connect(function()
-    ParticleEmitter.Rate = 100
-
-    task.delay(1, function()
-        ParticleEmitter.Rate = 0
-    end)
-
-    rotateTween:Play()
-
-    game:GetService("VirtualInputManager"):SendKeyEvent(true, Enum.KeyCode.End, false, game)
-
-    rotateTween.Completed:Connect(function()
-        ImageButton.Rotation = 0
-    end)
-
-    local zoomTween = TweenService:Create(ImageButton, TweenInfo.new(0.2, Enum.EasingStyle.Bounce, Enum.EasingDirection.Out), {Size = UDim2.new(0, 60, 0, 60)})
-    zoomTween:Play()
-    zoomTween.Completed:Connect(function()
-        local resetZoom = TweenService:Create(ImageButton, TweenInfo.new(0.2, Enum.EasingStyle.Bounce, Enum.EasingDirection.Out), {Size = UDim2.new(0, 50, 0, 50)})
-        resetZoom:Play()
-    end)
-end)
-
 if game:GetService("ReplicatedStorage").Effect.Container:FindFirstChild("Death") then
 	game:GetService("ReplicatedStorage").Effect.Container.Death:Destroy()
 end
@@ -2439,7 +2414,7 @@ spawn(function()
         end
     end
 end)
-local DropdownMethodFram = Tabs.At:AddDropdown("DropdownMethodFram", {
+local DropdownMethodFram = Tabs.AM:AddDropdown("DropdownMethodFram", {
         Title = "Select Method Fram",
         Description = "",
         Values = {"Level","Bone","Cake Prince",},
@@ -2453,7 +2428,7 @@ local DropdownMethodFram = Tabs.At:AddDropdown("DropdownMethodFram", {
         TypeMethodFram = Value
     end)
 
-    local ToggleStartFraming = Tabs.At:AddToggle("ToggleStartFraming", {
+    local ToggleStartFraming = Tabs.AM:AddToggle("ToggleStartFraming", {
         Title = "Start Farming",
         Description = "", 
         Default = false })
