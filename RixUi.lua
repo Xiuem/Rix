@@ -38,7 +38,7 @@ local Tabs = {
     Sn = Window:AddTab({ Title = "Sea Event" }),
 				It = Window:AddTab({ Title = "Quest & Item" }),
 }
-local Options = Library.Options
+local Options = Fluent.Options
 
 local id = game.PlaceId
 if id == 2753915549 then First_Sea = true; elseif id == 4442272183 then Second_Sea = true; elseif id == 7449423635 then Third_Sea = true; else game:Shutdown() end;
