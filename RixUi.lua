@@ -2498,9 +2498,9 @@ task.spawn(function()
         Default = 1,
     })
 
-    Dropdown:SetValue("0.1")
+    DropdownAttack:SetValue("0.1")
 
-    Dropdown:OnChanged(function(Value)
+    DropdownAttack:OnChanged(function(Value)
         _G.FastAttackDelay = Value
     end)
 
@@ -2533,3 +2533,51 @@ spawn(function()
         end
     end
 end)
+
+local FastAttack = Tabs.Sf:AddToggle("FastAttack", {Title = "Fast Attack", Default = true })
+
+FastAttack:OnChanged(function(Value)
+    _G.FastAttackOld = Value
+end)
+
+Options.FastAttack:SetValue(true)
+
+ local module = {
+  NextAttack = 0,
+  Distance = 55,
+  attackMobs = true,
+  attackPlayers = true
+}
+
+local Player = game:GetService("Players")
+
+function module:GetBladeHits()
+  local BladeHits = {}
+  
+  for _, Enemy in game:GetService("Workspace").Enemies:GetChildren() do
+    if Enemy:FindFirstChild("HumanoidRootPart") then
+      table.insert(BladeHits, Enemy.HumanoidRootPart)
+    end
+  end
+  
+  return BladeHits
+end
+
+function module:attack()
+  local BladeHits = self:GetBladeHits()
+  
+  game:GetService("ReplicatedStorage").Modules.Net:WaitForChild("RE/RegisterAttack"):FireServer(0)
+  
+  for _, Hit in BladeHits do
+    game:GetService("ReplicatedStorage").Modules.Net:WaitForChild("RE/RegisterHit"):FireServer(Hit)
+  end
+end
+
+spawn(function()
+    game:GetService("RunService").RenderStepped:Connect(function()
+        if _G.FastAttackOld == true then
+            game.Players.LocalPlayer.Character.Stun.Value = 0
+            game.Players.LocalPlayer.Character.Busy.Value = false        
+        end
+    end)
+				end)
