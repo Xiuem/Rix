@@ -2534,15 +2534,13 @@ spawn(function()
     end
 end)
 
-local FastAttack = Tabs.Sf:AddToggle("FastAttack", {Title = "Fast Attack", Default = true })
+local ToggleFast = Tabs.Settings:AddToggle("MyToggle", {Title = "Fast Attack", Default = true })
 
-FastAttack:OnChanged(function(Value)
-    _G.FastAttackOld = Value
-end)
-
-Options.FastAttack:SetValue(true)
-
- local module = {
+    ToggleFast:OnChanged(function(Value)
+      UFFF = Value
+						end)
+						
+	 local module = {
   NextAttack = 0,
   Distance = 55,
   attackMobs = true,
@@ -2574,10 +2572,7 @@ function module:attack()
 end
 
 spawn(function()
-    game:GetService("RunService").RenderStepped:Connect(function()
-        if _G.FastAttackOld == true then
-            game.Players.LocalPlayer.Character.Stun.Value = 0
-            game.Players.LocalPlayer.Character.Busy.Value = false        
-        end
-    end)
-				end)
+  while wait(0.05) do -- Tăng tốc độ tấn công bằng cách giảm thời gian chờ
+    module:attack()
+  end
+		end)
