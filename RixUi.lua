@@ -28,7 +28,7 @@ Fluent:Notify({
 				
 local Tabs = {
     Sf = Window:AddTab({ Title = "Setting Fram" }),
-    AM = Window:AddTab({ Title = "Auto Fram" }),
+    At = Window:AddTab({ Title = "Auto Fram" }),
     Lp = Window:AddTab({ Title = "Local Player" }),
     Shop = Window:AddTab({ Title = "Shop" }),
     Sa = Window:AddTab({ Title = "Stack Fram" }),
@@ -2664,7 +2664,7 @@ spawn(function()
     end
 end)
 
-local ToggleAutoKen = Tabs.Setting:AddToggle("ToggleAutoKen", {Title = "Auto Ken", Description = "", Default = false })
+local ToggleAutoKen = Tabs.Sf:AddToggle("ToggleAutoKen", {Title = "Auto Ken", Description = "", Default = false })
 ToggleAutoKen:OnChanged(function(Value)
     _G.AutoKen = Value
     if Value then
@@ -2686,70 +2686,32 @@ spawn(function()
     end
 				end)						
 				
-	Tabs.AM:AddParagraph({
+	Tabs.At:AddParagraph({
     Title = "",
     Content = "Auto Framing"
 				})			
 				
-local ToggleBone = Tabs.AM:AddToggle("ToggleBone", {
-    Title = "Farm Bone",
-    Description = "", 
-    Default = false })
-ToggleBone:OnChanged(function(Value)
-    _G.AutoBone = Value
-    if Value == false then
-        wait()
-        Tween(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
-        wait()
-    end
-end)
-Options.ToggleBone:SetValue(false)
-local BoneCFrame = CFrame.new(-9515.75, 174.8521728515625, 6079.40625)
-local BoneCFrame2 = CFrame.new(-9359.453125, 141.32679748535156, 5446.81982421875)
-spawn(function()
-    while wait() do
-        if _G.AutoBone then
-            pcall(function()
-                local QuestTitle = game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text
-                if not string.find(QuestTitle, "Demonic Soul") then
-                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
-                end
-                if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false then
-                 toTarget(BoneCFrame)
-                if (BoneCFrame.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 3 then    
-                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StartQuest","HauntedQuest2",1)
-                    end
-                elseif game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == true then
-                    if game:GetService("Workspace").Enemies:FindFirstChild("Reborn Skeleton") or game:GetService("Workspace").Enemies:FindFirstChild("Living Zombie") or game:GetService("Workspace").Enemies:FindFirstChild("Demonic Soul") or game:GetService("Workspace").Enemies:FindFirstChild("Posessed Mummy") then
-                        for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
-                            if v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
-                                if v.Name == "Reborn Skeleton" or v.Name == "Living Zombie" or v.Name == "Demonic Soul" or v.Name == "Posessed Mummy" then
-                                    if string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text, "Demonic Soul") then
-                                        repeat wait(_G.Fast_Delay)
-                                            AttackNoCoolDown()
-                                            AutoHaki()
-                                            bringmob = true
-                                            EquipTool(SelectWeapon)
-                                            Tween(v.HumanoidRootPart.CFrame * Pos)
-			                                v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
-                                            v.HumanoidRootPart.Transparency = 1
-                                            v.Humanoid.JumpPower = 0
-                                            v.Humanoid.WalkSpeed = 0
-                                            v.HumanoidRootPart.CanCollide = false
-                                            FarmPos = v.HumanoidRootPart.CFrame
-                                            MonFarm = v.Name
-                                        until not _G.AutoBone or v.Humanoid.Health <= 0 or not v.Parent or game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false
-                                    else
-                                        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
-                                        bringmob = false
-                                    end
-                                end
-                            end
-                        end
-                    else
-                    end
-                end
-            end)
-        end
-    end
-end)
+				local DropdownMode = Tabs.At:AddDropdown("DropdownMode", {
+        Title = "Select Mode Fram",
+        Description = "",
+        Values = {"Level","Bone","Cake Prince",},
+        Multi = false,
+        Default = 1,
+    })
+
+    DropdownMode:SetValue("Level")
+
+    DropdownMode:OnChanged(function(Value)
+        TypeModeFram = Value
+    end)
+
+    local ToggleStartFraming = Tabs.At:AddToggle("ToggleStartFraming", {
+        Title = "Start Farming",
+        Description = "", 
+        Default = false })
+    ToggleStartFraming:OnChanged(function(Value)
+        Start = Value
+    end)
+    Options.ToggleMasteryFruit:SetValue(false)
+				
+				
