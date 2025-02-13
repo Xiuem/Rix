@@ -2686,6 +2686,96 @@ spawn(function()
     end
 				end)						
 				
+	Tabs.Sf:AddParagraph({
+    Title = "",
+    Content = "Fruit Framing"
+				})				
+			
+			
+local ToggleZ = Tabs.Sf:AddToggle("ToggleZ", {Title = "Skill Z",Description = "", Default = true })
+ToggleZ:OnChanged(function(Value)
+    SkillZ = Value
+end)
+Options.ToggleZ:SetValue(true)
+
+local ToggleX = Tabs.Sf:AddToggle("ToggleX", {Title = "Skill X", Description = "",Default = true })
+ToggleX:OnChanged(function(Value)
+    SkillX = Value
+end)
+Options.ToggleX:SetValue(true)
+
+local ToggleC = Tabs.Sf:AddToggle("ToggleC", {Title = "Skill C",Description = "", Default = true })
+ToggleC:OnChanged(function(Value)
+    SkillC = Value
+end)
+Options.ToggleC:SetValue(true)
+
+local ToggleV = Tabs.Sf:AddToggle("ToggleV", {Title = "Skill V",Description = "", Default = true })
+ToggleV:OnChanged(function(Value)
+    SkillV = Value
+end)
+Options.ToggleV:SetValue(true)
+
+local ToggleF = Tabs.Sf:AddToggle("ToggleF", {Title = "Skill F",Description = "", Default = false })
+ToggleF:OnChanged(function(Value)
+   SkillF = Value
+    end)
+Options.ToggleF:SetValue(false)
+
+Tabs.Sf:AddParagraph({
+    Title = "",
+    Content = "................."
+				})		
+
+local SliderPosX = Tabs.Sf:AddSlider("SliderPosX", {
+    Title = "PosX",
+    Description = "",
+    Default = 0,
+    Min = -60,
+    Max = 60,
+    Rounding = 1,
+    Callback = function(Value)
+      posX = Value
+    end
+})
+SliderPosX:OnChanged(function(Value)
+  posX = Value
+end)
+SliderPosX:SetValue(0)
+
+local SliderPosY = Tabs.Sf:AddSlider("SliderPosY", {
+    Title = "PosY",
+    Description = "",
+    Default = 30,
+    Min = -60,
+    Max = 60,
+    Rounding = 1,
+    Callback = function(Value)
+      posY = Value
+    end
+})
+SliderPosY:OnChanged(function(Value)
+  posY = Value
+end)
+SliderPosY:SetValue(30)
+
+local SliderPosZ = Tabs.Sf:AddSlider("SliderPosZ", {
+    Title = "PosZ",
+    Description = "",
+    Default = 0,
+    Min = -60,
+    Max = 60,
+    Rounding = 5,
+    Callback = function(Value)
+      posZ = Value
+    end
+})
+SliderPosZ:OnChanged(function(Value)
+     posZ = Value
+end)
+SliderPosZ:SetValue(0)
+
+				
 	Tabs.At:AddParagraph({
     Title = "",
     Content = "Auto Framing"
@@ -2712,6 +2802,82 @@ spawn(function()
     ToggleStartFraming:OnChanged(function(Value)
         Start = Value
     end)
-    Options.ToggleMasteryFruit:SetValue(false)
-				
-				
+    Options.ToggleStartFraming:SetValue(false)
+				spawn(function()
+    while task.wait(.1) do
+    if _G.AutoLevel and StartFraming and TypeModeFram == 'Level' then
+    pcall(function()
+      CheckLevel(SelectMonster)
+      if not string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text, NameMon) or game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false then
+      game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
+      if (CFrameQ.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 5 then
+      game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StartQuest",NameQuest,QuestLv)
+      end
+      elseif string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text, NameMon) or game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == true then
+      for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+      if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") then
+      if v.Name == Ms then
+        repeat wait(_G.Fast_Delay)
+      if v.Humanoid.Health <= v.Humanoid.MaxHealth * KillPercent / 100 then
+      _G.UseSkill = true
+      else
+    _G.UseSkill = false
+	   AutoHaki()
+       bringmob = true
+      EquipTool(SelectWeapon)
+      Tween(v.HumanoidRootPart.CFrame * Pos)
+      v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
+      v.HumanoidRootPart.Transparency = 1
+      v.Humanoid.JumpPower = 0
+      v.Humanoid.WalkSpeed = 0
+      v.HumanoidRootPart.CanCollide = false
+      FarmPos = v.HumanoidRootPart.CFrame
+      MonFarm = v.Name
+      
+      AttackNoCoolDown()
+      end
+      until not AutoFarmMasDevilFruit or not v.Parent or v.Humanoid.Health == 0 or game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false or not game:GetService("Workspace").Enemies:FindFirstChild(v.Name) or not TypeMastery == 'Level'
+      bringmob = false
+      _G.UseSkill = false
+      
+      end
+      end
+      end
+      end
+      end)
+
+    elseif AutoFarmMasDevilFruit and TypeMastery == 'Near Mobs' then
+    pcall(function()
+      for i,v in pairs (game.Workspace.Enemies:GetChildren()) do
+      if v.Name and v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") then
+      if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v:FindFirstChild("HumanoidRootPart").Position).Magnitude <= 5000 then
+        repeat wait(_G.Fast_Delay)
+      if v.Humanoid.Health <= v.Humanoid.MaxHealth * KillPercent / 100 then
+      _G.UseSkill = true
+      else
+        _G.UseSkill = false
+		AutoHaki()
+        bringmob = true
+      EquipTool(SelectWeapon)
+      Tween(v.HumanoidRootPart.CFrame * Pos)
+      v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
+      v.HumanoidRootPart.Transparency = 1
+      v.Humanoid.JumpPower = 0
+      v.Humanoid.WalkSpeed = 0
+      v.HumanoidRootPart.CanCollide = false
+      FarmPos = v.HumanoidRootPart.CFrame
+      MonFarm = v.Name
+      
+       AttackNoCoolDown()
+      end
+      until not AutoFarmMasDevilFruit or not MasteryType == 'Near Mobs' or not v.Parent or v.Humanoid.Health == 0 or not TypeMastery == 'Near Mobs'
+      bringmob = false
+      _G.UseSkill = false
+      
+    end
+end
+end
+end)
+end
+end
+end)
