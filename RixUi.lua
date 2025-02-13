@@ -2290,7 +2290,7 @@ function AttackNoCoolDown()
             attackEvent:FireServer(0.000000001)
             hitEvent:FireServer(primaryPart, targets)
         else
-            task.wait(0.000000001)
+            task.wait(_G.FastAttackDelay)
         end
     end)
 end
@@ -2628,3 +2628,128 @@ ToggleRemove:OnChanged(function(Value)
             end
         end
         end)
+								
+		local ToggleAutoT = Tabs.Sf:AddToggle("ToggleAutoT", {Title = "Turn On V3", Description = "", Default = false })
+ToggleAutoT:OnChanged(function(Value)
+    _G.AutoT = Value
+    end)
+ Options.ToggleAutoT:SetValue(false)
+ spawn(function()
+    while wait() do
+        pcall(function()
+            if _G.AutoT then
+                game:GetService("ReplicatedStorage").Remotes.CommE:FireServer("ActivateAbility")
+            end
+        end)
+    end
+    end)
+
+
+local ToggleAutoY = Tabs.Sf:AddToggle("ToggleAutoY", {Title = "Turn On V4", Description = "", Default = false })
+ToggleAutoY:OnChanged(function(Value)
+    _G.AutoY = Value
+end)
+
+Options.ToggleAutoY:SetValue(false)
+
+spawn(function()
+    while wait() do
+        pcall(function()
+            if _G.AutoY then
+                game:GetService("VirtualInputManager"):SendKeyEvent(true, "Y", false, game)
+                wait()
+                game:GetService("VirtualInputManager"):SendKeyEvent(false, "Y", false, game)
+            end
+        end)
+    end
+end)
+
+local ToggleAutoKen = Tabs.Setting:AddToggle("ToggleAutoKen", {Title = "Auto Ken", Description = "", Default = false })
+ToggleAutoKen:OnChanged(function(Value)
+    _G.AutoKen = Value
+    if Value then
+        game:GetService("ReplicatedStorage").Remotes.CommE:FireServer("Ken", true)
+    else
+        game:GetService("ReplicatedStorage").Remotes.CommE:FireServer("Ken", false) 
+    end
+end)
+
+Options.ToggleAutoKen:SetValue(false)
+
+spawn(function()
+    while wait() do
+        pcall(function()
+            if _G.AutoKen then
+                game:GetService("ReplicatedStorage").Remotes.CommE:FireServer("Ken", true)
+            end
+        end)
+    end
+				end)						
+				
+	Tabs.AM:AddParagraph({
+    Title = "",
+    Content = "Auto Framing"
+				})			
+				
+local ToggleBone = Tabs.AM:AddToggle("ToggleBone", {
+    Title = "Farm Bone",
+    Description = "", 
+    Default = false })
+ToggleBone:OnChanged(function(Value)
+    _G.AutoBone = Value
+    if Value == false then
+        wait()
+        Tween(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
+        wait()
+    end
+end)
+Options.ToggleBone:SetValue(false)
+local BoneCFrame = CFrame.new(-9515.75, 174.8521728515625, 6079.40625)
+local BoneCFrame2 = CFrame.new(-9359.453125, 141.32679748535156, 5446.81982421875)
+spawn(function()
+    while wait() do
+        if _G.AutoBone then
+            pcall(function()
+                local QuestTitle = game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text
+                if not string.find(QuestTitle, "Demonic Soul") then
+                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
+                end
+                if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false then
+                 toTarget(BoneCFrame)
+                if (BoneCFrame.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 3 then    
+                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StartQuest","HauntedQuest2",1)
+                    end
+                elseif game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == true then
+                    if game:GetService("Workspace").Enemies:FindFirstChild("Reborn Skeleton") or game:GetService("Workspace").Enemies:FindFirstChild("Living Zombie") or game:GetService("Workspace").Enemies:FindFirstChild("Demonic Soul") or game:GetService("Workspace").Enemies:FindFirstChild("Posessed Mummy") then
+                        for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                            if v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
+                                if v.Name == "Reborn Skeleton" or v.Name == "Living Zombie" or v.Name == "Demonic Soul" or v.Name == "Posessed Mummy" then
+                                    if string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text, "Demonic Soul") then
+                                        repeat wait(_G.Fast_Delay)
+                                            AttackNoCoolDown()
+                                            AutoHaki()
+                                            bringmob = true
+                                            EquipTool(SelectWeapon)
+                                            Tween(v.HumanoidRootPart.CFrame * Pos)
+			                                v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
+                                            v.HumanoidRootPart.Transparency = 1
+                                            v.Humanoid.JumpPower = 0
+                                            v.Humanoid.WalkSpeed = 0
+                                            v.HumanoidRootPart.CanCollide = false
+                                            FarmPos = v.HumanoidRootPart.CFrame
+                                            MonFarm = v.Name
+                                        until not _G.AutoBone or v.Humanoid.Health <= 0 or not v.Parent or game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false
+                                    else
+                                        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
+                                        bringmob = false
+                                    end
+                                end
+                            end
+                        end
+                    else
+                    end
+                end
+            end)
+        end
+    end
+end)
