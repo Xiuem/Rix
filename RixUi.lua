@@ -2802,24 +2802,22 @@ SliderPosZ:SetValue(0)
 				})			
 				
 				
-	Tabs.St:AddParagraph({
-    Title = "",
-    Content = "Check Quest"
-				})			
-				
-local MonsterStatus = Check Quest:Label("")
-local QuestStatus = Check Quest:Label("")
-spawn(function()
-    while task.wait() do
-        if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false then
-            MonsterStatus:Set("Monster : ...")
-            QuestStatus:Set("Quest : ...".." | Level : ...")
-        elseif game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == true then
-            pcall(function()
-                CheckQuest()
-                MonsterStatus:Set("Monster : "..Mon)
-                QuestStatus:Set("Quest : "..NameQuest.." | Level : "..LevelQuest)
-            end)
-        end
-    end
-end)
+				Tabs.St:AddParagraph({
+					Title="Verison :",
+					Content="Script Version : [Skid] \n Language : English \n Script Name : Skid "})
+					ShopDevilSell={}local a=game.ReplicatedStorage:FindFirstChild("Remotes").CommF_:InvokeServer("GetFruits")for a,a in next,a do if a.OnSale then table.insert(ShopDevilSell,a.Name)end end;
+					Tabs.St:AddParagraph({
+						Title="Shop Devils Fruits :",
+						Content="Fruits On Sale : "..table.concat(ShopDevilSell,",")})function CheckRace()local a=game.ReplicatedStorage.Remotes.CommF_:InvokeServer("Wenlocktoad","1")local b=game.ReplicatedStorage.Remotes.CommF_:InvokeServer("Alchemist","1")if game.Players.LocalPlayer.Character:FindFirstChild("RaceTransformed")then return game:GetService("Players").LocalPlayer.Data.Race.Value.." V4"end;if a==-2 then return game:GetService("Players").LocalPlayer.Data.Race.Value.." V3"end;if b==-2 then return game:GetService("Players").LocalPlayer.Data.Race.Value.." V2"end;return game:GetService("Players").LocalPlayer.Data.Race.Value.." V1"end;
+						Tabs.St:AddParagraph({
+							Title="Players Status :",
+							Content="Name : "..game.Players.LocalPlayer.Name.." \n Level : "..game.Players.LocalPlayer.Data.Level.Value.." \n Race : "..CheckRace().." \n Beli : "..game.Players.LocalPlayer.Data.Beli.Value.." \n Fragments : "..game.Players.LocalPlayer.Data.Fragments.Value.." Bounty : "..tostring(game:GetService("Players").LocalPlayer.leaderstats["Bounty/Honor"].Value)..""})if TravelZou then function CheckKatakuri(a)if string.len(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CakePrinceSpawner"))==88 then a:SetDesc("Killed : "..string.sub(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CakePrinceSpawner"),39,41)..' / 500')elseif string.len(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CakePrinceSpawner"))==87 then a:SetDesc("Killed : "..string.sub(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CakePrinceSpawner"),39,40)..' / 500')elseif string.len(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CakePrinceSpawner"))==86 then a:SetDesc("Killed : "..string.sub(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CakePrinceSpawner"),39,39)..' / 500')else a:SetDesc("Katakuri : 🟢")end end;
+					local a=Tabs.St:AddParagraph({
+						Title="Dough King - Katakuri Status :",
+						Content=""})spawn(function()while wait()do CheckKatakuri(a)end end)end;function MirageIslandCheck()if game.Workspace._WorldOrigin.Locations:FindFirstChild('Mirage Island')then return"✅"else return"❌"end;return"❌"end;function KitsuneIslandCheck()if game.Workspace.Map:FindFirstChild("KitsuneIsland")then return"✅"else return"❌"end;return"❌"end;function MoonTextureId()if TravelMain then return game:GetService("Lighting").FantasySky.MoonTextureId elseif TravelDressrosa then return game:GetService("Lighting").FantasySky.MoonTextureId elseif TravelZou then return game:GetService("Lighting").Sky.MoonTextureId end;if game:GetService("Lighting"):FindFirstChild("FantasySky")then return game:GetService("Lighting").FantasySky.MoonTextureId elseif game:GetService("Lighting"):FindFirstChild("Sky")then return game:GetService("Lighting").Sky.MoonTextureId end end;function CheckMoon()moon8="http://www.roblox.com/asset/?id=9709150401"moon7="http://www.roblox.com/asset/?id=9709150086"moon6="http://www.roblox.com/asset/?id=9709149680"moon5="http://www.roblox.com/asset/?id=9709149431"moon4="http://www.roblox.com/asset/?id=9709149052"moon3="http://www.roblox.com/asset/?id=9709143733"moon2="http://www.roblox.com/asset/?id=9709139597"moon1="http://www.roblox.com/asset/?id=9709135895"moonreal=MoonTextureId()cofullmoonkothangbeo="Bad Moon"if moonreal==moon5 or moonreal==moon4 then if moonreal==moon5 then return"Full Moon"elseif moonreal==moon4 then return"Next Night"end end;return cofullmoonkothangbeo end;function function6()return math.floor(game.Lighting.ClockTime)end;function getServerTime()RealTime=tostring(math.floor(game.Lighting.ClockTime*100)/100)RealTime=tostring(game.Lighting.ClockTime)RealTimeTable=RealTime:split(".")Minute,Second=RealTimeTable[1],tonumber(0+tonumber(RealTimeTable[2]/100))*60;return Minute,Second end;function function8()local a=game.Lighting;local a=a.ClockTime;if CheckMoon()=="Full Moon"and a<=5 then return tostring(function6()).." ( Will End Moon In "..math.floor(5-a).." Minutes )"elseif CheckMoon()=="Full Moon"and(a>5 and a<12)then return tostring(function6()).." ( Fake Moon )"elseif CheckMoon()=="Full Moon"and(a>12 and a<18)then return tostring(function6()).." ( Will Full Moon In "..math.floor(18-a).." Minutes )"elseif CheckMoon()=="Full Moon"and(a>18 and a<=24)then return tostring(function6()).." ( Will End Moon In "..math.floor(24+6-a).." Minutes )"end;if CheckMoon()=="Next Night"and a<12 then return tostring(function6()).." ( Will Full Moon In "..math.floor(18-a).." Minutes )"elseif CheckMoon()=="Next Night"and a>12 then return tostring(function6()).." ( Will Full Moon In "..math.floor(18+12-a).." Minutes )"end;return tostring(function6())end;
+						local a=Tabs.St:AddParagraph({
+							Title="Server Status :",
+							Content="Mirage : "..MirageIslandCheck().." \nKitsune : "..KitsuneIslandCheck().." \nFull Moon : "..CheckMoon().." \nServer Time : "..getServerTime().." - Full Moon : "..function8()..""})spawn(function()while wait()do a:SetDesc("Mirage : "..MirageIslandCheck().." \nKitsune : "..KitsuneIslandCheck().." \nFull Moon : "..CheckMoon().." \nServer Time : "..getServerTime().." - Full Moon : "..function8().."")end end)function CheckMaterialCount()local a={}for b,b in pairs(game:GetService("ReplicatedStorage").Remotes["CommF_"]:InvokeServer("getInventory"))do if b["Type"]=="Material"then table.insert(a,b.Name.." : "..b["Count"])end end;local a=table.concat(a,"\n")return a end;
+						local a=Tabs.St:AddParagraph({
+							Title="Material Inventory :",
+							Content=CheckMaterialCount()})spawn(function()while wait(5)do a:SetDesc(CheckMaterialCount())end end)
