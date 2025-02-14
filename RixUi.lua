@@ -2321,7 +2321,7 @@ function AttackNoCoolDown()
             attackEvent:FireServer(0.000000001)
             hitEvent:FireServer(primaryPart, targets)
         else
-            task.wait(_G.FastAttackDelay)
+            task.wait(0.000000001)
         end
     end)
 end
@@ -2656,11 +2656,6 @@ ToggleRemoveNotify:OnChanged(function(Value)
         end
     end)
 
-Toggle = Tabs.Sf:AddToggle("MyToggle", {Title = "Bypass Tp", Default = false })
-    Toggle:OnChanged(function(Value)
-        BypassTP = Value		
-								end)
-				
     local ToggleWhite = Tabs.Sf:AddToggle("ToggleWhite", {Title = "White Screen",Description = "", Default = false })
     ToggleWhite:OnChanged(function(Value)
        _G.WhiteScreen = Value
@@ -2672,7 +2667,7 @@ Toggle = Tabs.Sf:AddToggle("MyToggle", {Title = "Bypass Tp", Default = false })
         end)
         Options.ToggleWhite:SetValue(false)
 								
-				local ToggleRemove = Tabs.Sf:AddToggle("ToggleRemove", {Title = "Remove DameText",Description = "", Default = false })
+				local ToggleRemove = Tabs.Sf:AddToggle("ToggleRemove", {Title = "Remove Dame Text",Description = "", Default = false })
 ToggleRemove:OnChanged(function(Value)
     _G.RemoveDameText = Value
     end)
@@ -2780,59 +2775,6 @@ ToggleF:OnChanged(function(Value)
    SkillF = Value
     end)
 Options.ToggleF:SetValue(false)
-
-Tabs.Sf:AddParagraph({
-    Title = "",
-    Content = "....................................."
-				})		
-
-local SliderPosX = Tabs.Sf:AddSlider("SliderPosX", {
-    Title = "PosX",
-    Description = "",
-    Default = 0,
-    Min = -60,
-    Max = 60,
-    Rounding = 1,
-    Callback = function(Value)
-      posX = Value
-    end
-})
-SliderPosX:OnChanged(function(Value)
-  posX = Value
-end)
-SliderPosX:SetValue(0)
-
-local SliderPosY = Tabs.Sf:AddSlider("SliderPosY", {
-    Title = "PosY",
-    Description = "",
-    Default = 30,
-    Min = -60,
-    Max = 60,
-    Rounding = 1,
-    Callback = function(Value)
-      posY = Value
-    end
-})
-SliderPosY:OnChanged(function(Value)
-  posY = Value
-end)
-SliderPosY:SetValue(30)
-
-local SliderPosZ = Tabs.Sf:AddSlider("SliderPosZ", {
-    Title = "PosZ",
-    Description = "",
-    Default = 0,
-    Min = -60,
-    Max = 60,
-    Rounding = 5,
-    Callback = function(Value)
-      posZ = Value
-    end
-})
-SliderPosZ:OnChanged(function(Value)
-     posZ = Value
-end)
-SliderPosZ:SetValue(0)
 
 				
 	Tabs.At:AddParagraph({
