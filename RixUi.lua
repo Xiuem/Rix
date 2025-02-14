@@ -2172,7 +2172,7 @@ spawn(function()
    spawn(function()
 			while task.wait() do
 				pcall(function()
-					if _G.AutoEvoRace or _G.CastleRaid or _G.CollectAzure or _G.TweenToKitsune or _G.GhostShip or _G.Ship or _G.Auto_Holy_Torch or _G.TeleportPly or _G.Tweenfruit or _G.AutoFishCrew or _G.AutoShark or _G.AutoCakeV2 or _G.FocusedBoss or AutoFarmAcient or _G.AutoQuestRace or Auto_Law or AutoTushita or _G.AutoHolyTorch or _G.AutoTerrorshark or _G.farmpiranya or _G.AutoNear or _G.Ectoplasm or AutoEvoRace or AutoBartilo or _G.AutoLevel or _G.Clip2 or _G.AutoBone or _G.AutoBoss or AutoFarmMasGun or AutoFarmMasDevilFruit or AutoHallowSycthe or AutoTushita or _G.CakePrince or _G.AutoEliteor or AutoNextIsland or Musketeer or _G.AutoMaterial or _G.Factory or _G.SwanGlasses or _G.AutoFrozenDimension or _G.AutoUpgrade or _G.TweenToFrozenDimension or _G.hadesinvis or _G.FarmFast ỏ _G.AutoPlayerHunter then
+					if _G.AutoEvoRace or _G.CastleRaid or _G.CollectAzure or _G.TweenToKitsune or _G.GhostShip or _G.Ship or _G.Auto_Holy_Torch or _G.TeleportPly or _G.Tweenfruit or _G.AutoFishCrew or _G.AutoShark or _G.AutoCakeV2 or _G.FocusedBoss or AutoFarmAcient or _G.AutoQuestRace or Auto_Law or AutoTushita or _G.AutoHolyTorch or _G.AutoTerrorshark or _G.farmpiranya or _G.AutoNear or _G.Ectoplasm or AutoEvoRace or AutoBartilo or _G.AutoLevel or _G.Clip2 or _G.AutoBone or _G.AutoBoss or AutoFarmMasGun or AutoFarmMasDevilFruit or AutoHallowSycthe or AutoTushita or _G.CakePrince or _G.AutoEliteor or AutoNextIsland or Musketeer or _G.AutoMaterial or _G.Factory or _G.SwanGlasses or _G.AutoFrozenDimension or _G.AutoUpgrade or _G.TweenToFrozenDimension or _G.hadesinvis then
 						if not game:GetService("Players").LocalPlayer.Character.HumanoidRootPart:FindFirstChild("BodyClip") then
 							local Noclip = Instance.new("BodyVelocity")
 							Noclip.Name = "BodyClip"
@@ -2190,7 +2190,7 @@ spawn(function()
 spawn(function()
   pcall(function()
     game:GetService("RunService").Stepped:Connect(function()
-      if _G.AutoEvoRace or _G.CastleRaid or _G.CollectAzure or _G.TweenToKitsune or _G.GhostShip or _G.Ship or _G.Auto_Holy_Torch or _G.TeleportPly or _G.Tweenfruit or _G.AutoFishCrew or _G.AutoShark or _G.AutoCakeV2 or _G.FocusedBoss or AutoFarmAcient or _G.AutoQuestRace or Auto_Law or AutoTushita or _G.AutoHolyTorch or _G.AutoTerrorshark or _G.farmpiranya or _G.AutoNear or _G.Ectoplasm or AutoEvoRace or AutoBartilo or _G.AutoLevel or _G.Clip2 or _G.AutoBone or _G.AutoBoss or AutoFarmMasGun or AutoFarmMasDevilFruit or AutoHallowSycthe or AutoTushita or _G.CakePrince or _G.AutoEliteor or AutoNextIsland or Musketeer or _G.AutoMaterial or _G.Factory or _G.SwanGlasses or _G.AutoFrozenDimension or _G.AutoUpgrade or _G.TweenToFrozenDimension or _G.hadesinvis or _G.FarmFast or _G.AutoPlayerHunter then
+      if _G.AutoEvoRace or _G.CastleRaid or _G.CollectAzure or _G.TweenToKitsune or _G.GhostShip or _G.Ship or _G.Auto_Holy_Torch or _G.TeleportPly or _G.Tweenfruit or _G.AutoFishCrew or _G.AutoShark or _G.AutoCakeV2 or _G.FocusedBoss or AutoFarmAcient or _G.AutoQuestRace or Auto_Law or AutoTushita or _G.AutoHolyTorch or _G.AutoTerrorshark or _G.farmpiranya or _G.AutoNear or _G.Ectoplasm or AutoEvoRace or AutoBartilo or _G.AutoLevel or _G.Clip2 or _G.AutoBone or _G.AutoBoss or AutoFarmMasGun or AutoFarmMasDevilFruit or AutoHallowSycthe or AutoTushita or _G.CakePrince or _G.AutoEliteor or AutoNextIsland or Musketeer or _G.AutoMaterial or _G.Factory or _G.SwanGlasses or _G.AutoFrozenDimension or _G.AutoUpgrade or _G.TweenToFrozenDimension or _G.hadesinvis then
       for i,v in pairs(game:GetService("Players").LocalPlayer.Character:GetDescendants()) do
       if v:IsA("BasePart") then
       v.CanCollide = false
@@ -2800,85 +2800,26 @@ SliderPosZ:SetValue(0)
     Title = "",
     Content = "Auto Framing"
 				})			
-	if World1 then			
-local ToggleSkip = Tabs.At:AddToggle("ToggleSkip", {
-    Title = "Skip Fram [1-300]",
-    Description = "", 
-    Default = false })
-ToggleSkip:OnChanged(function(Value)
-    _G.FarmFast = Value
-StopTween(_G.FarmFast)
-    end)
-    spawn(function()
-		pcall(function()
-			while wait() do
-				if _G.FarmFast and World1 then
-					if game.Players.LocalPlayer.Data.Level.Value >= 10 then
-					    _G.AutoLevel = false
-					    _G.FarmFast = true
-					end
-				end
-			end
-		end)
-	end)
-    spawn(function()
-        while wait() do
-            if _G.FarmFast and World1 then
-                pcall(function()
-                if game.Players.LocalPlayer.Data.Level.Value >= 10 then
-                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance",Vector3.new(-7894.6176757813, 5547.1416015625, -380.29119873047))
-                        for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
-                            if v.Name == "Shanda" then
-                                if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
-                                    repeat task.wait()
-                                        AutoHaki()
-                                        EquipWeapon(_G.SelectWeapon)
-                                        v.HumanoidRootPart.CanCollide = false
-                                        v.Humanoid.WalkSpeed = 0
-                                        StardMag = true
-                                        FastMon = v.HumanoidRootPart.CFrame
-                                        v.HumanoidRootPart.Size = Vector3.new(80,80,80)                             
-                                        TP1(v.HumanoidRootPart.CFrame * Pos)
-                                        game:GetService("VirtualUser"):CaptureController()
-                                        game:GetService("VirtualUser"):Button1Down(Vector2.new(1280,672))
-                                    until not _G.FarmFast or not v.Parent or v.Humanoid.Health <= 0
-                                    StardMag = false
-                                    TP1(CFrame.new(-7678.48974609375, 5566.40380859375, -497.2156066894531))
-                                    UnEquipWeapon(_G.SelectWeapon)
-                                end
-                            end
-                        end
-                    else
-                        if game:GetService("ReplicatedStorage"):FindFirstChild("Shanda") then
-                            TP1(game:GetService("ReplicatedStorage"):FindFirstChild("Shanda").HumanoidRootPart.CFrame * CFrame.new(5,10,2))
-                        end
-                    end
-                end)
-            end
+				
+				
+	Tabs.St:AddParagraph({
+    Title = "",
+    Content = "Check Quest"
+				})			
+				
+local MonsterStatus = Check Quest:Label("")
+local QuestStatus = Check Quest:Label("")
+spawn(function()
+    while task.wait() do
+        if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false then
+            MonsterStatus:Set("Monster : ...")
+            QuestStatus:Set("Quest : ...".." | Level : ...")
+        elseif game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == true then
+            pcall(function()
+                CheckQuest()
+                MonsterStatus:Set("Monster : "..Mon)
+                QuestStatus:Set("Quest : "..NameQuest.." | Level : "..LevelQuest)
+            end)
         end
-    end)
-    spawn(function()
-		pcall(function()
-			while wait() do
-				if _G.FarmFast and World1 then
-					if game.Players.LocalPlayer.Data.Level.Value >= 75 then
-						_G.FarmFast = false
-						_G.AutoPlayerHunter = true
-					end
-				end
-			end
-		end)
-	end)
-    spawn(function()
-		pcall(function()
-			while wait() do
-				if _G.FarmFast and World1 then
-					if game.Players.LocalPlayer.Data.Level.Value >= 200 then
-				    	_G.AutoLevel = true
-						_G.AutoPlayerHunter = false
-					end
-				end
-			end
-		end)
-	end)
-end
+    end
+end)
