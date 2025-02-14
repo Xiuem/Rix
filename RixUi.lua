@@ -2323,33 +2323,6 @@ spawn(function()
     end
 end)
 
-local foldername = "Rix Hub"
-local filename = foldername.."/Setting.json"
-function saveSettings()
-    local HttpService = game:GetService("HttpService")
-    local json = HttpService:JSONEncode(_G)
-    if true then
-        if isfolder(foldername) then
-            if isfile(filename) then
-                writefile(filename, json)
-            else
-                writefile(filename, json)
-            end
-        else
-            makefolder(foldername)
-        end
-    end
-end
-
-function loadSettings()
-    local HttpService = game:GetService("HttpService")
-    if isfolder(foldername) then
-        if isfile(filename) then
-            _G = HttpService:JSONDecode(readfile(filename))
-        end
-    end
-			end
-
   function AutoHaki()
     if not game:GetService("Players").LocalPlayer.Character:FindFirstChild("HasBuso") then
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Buso")
@@ -2463,7 +2436,6 @@ Tabs.Sf:AddParagraph({
 				Toggle = Tabs.Sf:AddToggle("MyToggle", {Title = "Hide Mobs", Description = "Invisible monster for have better fps", Default = true })
     Toggle:OnChanged(function(Value)
         _G.hadesinvis = Value		
-        saveSettings() 
     end)
     spawn(function()
     while wait() do
@@ -2695,7 +2667,6 @@ ToggleAutoT:OnChanged(function(Value)
 local ToggleAutoY = Tabs.Sf:AddToggle("ToggleAutoY", {Title = "Turn On V4", Description = "", Default = false })
 ToggleAutoY:OnChanged(function(Value)
     _G.AutoY = Value
-				saveSettings()
 end)
 
 Options.ToggleAutoY:SetValue(false)
@@ -2853,7 +2824,7 @@ SliderPosZ:SetValue(0)
     Options.ToggleStartFraming:SetValue(false)
 	spawn(function()
     while task.wait(.1) do
-    if TypeModeFram == 'Level' and _G.AutoLevel then
+    if Start and TypeModeFram  == 'Level' and _G.AutoLevel then
     pcall(function()
           CheckLevel()
           if not string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text, NameMon) or game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false then
