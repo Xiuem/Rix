@@ -2393,237 +2393,42 @@ function LPH_JIT_MAX(func)
 end
 NoAttackAnimation = true
 local DmgAttack = game:GetService("ReplicatedStorage").Assets.GUI:WaitForChild("DamageCounter")
-local PC = require(game.Players.LocalPlayer.PlayerScripts.CombatFramework.Particle)
-local RL = require(game:GetService("ReplicatedStorage").CombatFramework.RigLib)
-local oldRL = RL.wrapAttackAnimationAsync
-RL.wrapAttackAnimationAsync = function(a, b, c, d, func)
-    if not NoAttackAnimation then
-        return oldRL(a, b, c, 60, func)
-    end
-    local Hits = {}
-    local Client = game.Players.LocalPlayer
-    local Characters = game:GetService("Workspace").Characters:GetChildren()
-    for i, v in pairs(Characters) do
-        local Human = v:FindFirstChildOfClass("Humanoid")
-        if v.Name ~= game.Players.LocalPlayer.Name and Human and Human.RootPart and Human.Health > 0 and Client:DistanceFromCharacter(Human.RootPart.Position) < 65 then
-            table.insert(Hits, Human.RootPart)
-        end
-    end
-    local Enemies = game:GetService("Workspace").Enemies:GetChildren()
-    for i, v in pairs(Enemies) do
-        local Human = v:FindFirstChildOfClass("Humanoid")
-        if Human and Human.RootPart and Human.Health > 0 and Client:DistanceFromCharacter(Human.RootPart.Position) < 65 then
-            table.insert(Hits, Human.RootPart)
-        end
-    end
-    a:Play(0.01, 0.01, 0.01)
-    pcall(func, Hits)
-end
-getAllBladeHits = LPH_NO_VIRTUALIZE(function(Sizes)
-    local Hits = {}
-    local Client = game.Players.LocalPlayer
-    local Enemies = game:GetService("Workspace").Enemies:GetChildren()
-    for i, v in pairs(Enemies) do
-        local Human = v:FindFirstChildOfClass("Humanoid")
-        if Human and Human.RootPart and Human.Health > 0 and Client:DistanceFromCharacter(Human.RootPart.Position) < Sizes + 5 then
-            table.insert(Hits, Human.RootPart)
-        end
-    end
-    return Hits
-end)
-getAllBladeHitsPlayers = LPH_NO_VIRTUALIZE(function(Sizes)
-    local Hits = {}
-    local Client = game.Players.LocalPlayer
-    local Characters = game:GetService("Workspace").Characters:GetChildren()
-    for i, v in pairs(Characters) do
-        local Human = v:FindFirstChildOfClass("Humanoid")
-        if v.Name ~= game.Players.LocalPlayer.Name and Human and Human.RootPart and Human.Health > 0 and Client:DistanceFromCharacter(Human.RootPart.Position) < Sizes + 5 then
-            table.insert(Hits, Human.RootPart)
-        end
-    end
-    return Hits
-end)
+——local module = {
+  NextAttack = 0,
+  Distance = 55,
+  attackMobs = true,
+  attackPlayers = true
+}
 
-local CombatFramework = require(game:GetService("Players").LocalPlayer.PlayerScripts:WaitForChild("CombatFramework"))
-local CombatFrameworkR = getupvalues(CombatFramework)[2]
-local RigEven = game:GetService("ReplicatedStorage").RigControllerEvent
-local AttackAnim = Instance.new("Animation")
-local AttackCoolDown = 0
-local cooldowntickFire = 0
-local MaxFire = 1000
-local FireCooldown = 0
-local FireL = 0
-local bladehit = {}
-CancelCoolDown = LPH_JIT_MAX(function()
-    local ac = CombatFrameworkR.activeController
-    if ac and ac.equipped then
-        AttackCoolDown = tick() + (FireCooldown or 0.288) + ((FireL / MaxFire) * 0.3)
-        RigEven.FireServer(RigEven, "weaponChange", ac.currentWeaponModel.Name)
-        FireL = FireL + 1
-        task.delay((FireCooldown or 0.288) + ((FireL + 0.4 / MaxFire) * 0.3), function()
-            FireL = FireL - 1
-        end)
-    end
-end)
-AttackFunction = LPH_JIT_MAX(function(typef)
-    local ac = CombatFrameworkR.activeController
-    if ac and ac.equipped then
-        local bladehit = {}
-        if typef == 1 then
-            bladehit = getAllBladeHits(60)
-        elseif typef == 2 then
-            bladehit = getAllBladeHitsPlayers(65)
-        else
-            for i2, v2 in pairs(getAllBladeHits(55)) do
-                table.insert(bladehit, v2)
-            end
-            for i3, v3 in pairs(getAllBladeHitsPlayers(55)) do
-                table.insert(bladehit, v3)
-            end
-        end
-        if #bladehit > 0 then
-            pcall(task.spawn, ac.attack, ac)
-            if tick() > AttackCoolDown then
-                CancelCoolDown()
-            end
-            if tick() - cooldowntickFire > 0.5 then
-                ac.timeToNextAttack = 0
-                ac.hitboxMagnitude = 60
-                pcall(task.spawn, ac.attack, ac)
-                cooldowntickFire = tick()
-            end
-            local AMI3 = ac.anims.basic[3]
-            local AMI2 = ac.anims.basic[2]
-            local REALID = AMI3 or AMI2
-            AttackAnim.AnimationId = REALID
-            local StartP = ac.humanoid:LoadAnimation(AttackAnim)
-            StartP:Play(0.01, 0.01, 0.01)
-            RigEven.FireServer(RigEven, "hit", bladehit, AMI3 and 3 or 2, "")
-            task.delay(0, function()
-                StartP:Stop()
-            end)
-        end
-    end
-end)
-function CheckStun()
-    if game:GetService('Players').LocalPlayer.Character:FindFirstChild("Stun") then
-        return game:GetService('Players').LocalPlayer.Character.Stun.Value ~= 0
-    end
-    return false
-end
-LPH_JIT_MAX(function()
-    spawn(function()
-        while game:GetService("RunService").Stepped:Wait() do
-            local ac = CombatFrameworkR.activeController
-            if ac and ac.equipped and not CheckStun() then
-                if NeedAttacking and Fast_Attack then
-                    task.spawn(function()
-                        pcall(task.spawn, AttackFunction, 1)
-                    end)
-                elseif DamageAura then
-                    task.spawn(function()
-                        pcall(task.spawn, AttackFunction, 3)
-                    end)
-                elseif UsefastattackPlayers and Fast_Attack then
-                    task.spawn(function()
-                        pcall(task.spawn, AttackFunction, 2)
-                    end)
-                elseif NeedAttacking and Fast_Attack == false then
-                    if ac.hitboxMagnitude ~= 60 then
-                        ac.hitboxMagnitude = 60
-                    end
-                    pcall(task.spawn, ac.attack, ac)
-                end
-            end
-        end
-    end)
-end)()
-inmyselfss = LPH_JIT_MAX(function(name)
-	if game:GetService("Players").LocalPlayer.Backpack:FindFirstChild(name) then
-		return game:GetService("Players").LocalPlayer.Backpack:FindFirstChild(name)
-	end
-	local OutValue
-	for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do 
-		if v:IsA("Tool") then
-			if v.Name == name then
-				OutValue = v
-				break
-			end
-		end
-	end
-	return OutValue or game:GetService("Players").LocalPlayer.Character:FindFirstChild(name)
-end)
-LPH_NO_VIRTUALIZE(function()
-	function Click()
-		game:GetService("VirtualUser"):CaptureController()
-		game:GetService("VirtualUser"):Button1Down(Vector2.new(1280, 672))
-	end
-end)()
+local Player = game:GetService("Players")
 
-task.delay(15,function() 
-    if hookfunction and not islclosure(hookfunction) then 
-        workspace._WorldOrigin.ChildAdded:Connect(function(v)
-            if v.Name =='DamageCounter' then 
-                v.Enabled  = false 
-            end
-        end)
-        hookfunction(require(game:GetService("ReplicatedStorage").Effect.Container.Death), function()end)
-        hookfunction(require(game:GetService("ReplicatedStorage").Effect.Container.Respawn), function()end)
-        hookfunction(require(game:GetService("ReplicatedStorage"):WaitForChild("GuideModule")).ChangeDisplayedNPC,function() end)
-        task.spawn(function()
-            local NGU,NGUVL
-            repeat 
-                NGU,NGUVL = pcall(function()
-                    for i,v in pairs(getupvalues(require(game:GetService("Players").LocalPlayer.PlayerScripts.CombatFramework))[2].activeController.data) do  
-                        if typeof(v) == 'function' then 
-                            hookfunction(v,function() end )
-                        end
-                    end
-                end)
-                task.wait(1.5)
-            until NGU 
-        end) 
-        abc = true
-        task.spawn(function()
-            local a = game.Players.LocalPlayer
-            local b = require(a.PlayerScripts.CombatFramework.Particle)
-            local c = require(game:GetService("ReplicatedStorage").CombatFramework.RigLib)
-            if not shared.orl then
-                shared.orl = c.wrapAttackAnimationAsync
-            end
-            if not shared.cpc then
-                shared.cpc = b.play
-            end
-            if abc then
-                pcall(function()
-                    c.wrapAttackAnimationAsync = function(d, e, f, g, h)
-                        local i = c.getBladeHits(e, f, g)
-                        if i then
-                            b.play = function()
-                            end
-                            d:Play(0.1, 0.1, 0.1)
-                            h(i)
-                            b.play = shared.cpc
-                            wait(.5)
-                            d:Stop()
-                        end
-                    end
-                end)
-            end
-        end)
-        --[[
-            task.delay(math.random(30,60),function()
-                for i,v2 in pairs(game.ReplicatedStorage.Effect.Container:GetDescendants()) do 
-                    pcall(function()
-                        if v2.ClassName =='ModuleScript' and typeof(require(v2)) == 'function' then 
-                            hookfunction(require(v2),function()end)
-                        end
-                    end)
-                end
-            end)
-        ]]
+function module:GetBladeHits()
+  local BladeHits = {}
+  
+  for _, Enemy in game:GetService("Workspace").Enemies:GetChildren() do
+    if Enemy:FindFirstChild("HumanoidRootPart") then
+      table.insert(BladeHits, Enemy.HumanoidRootPart)
     end
-end)
+  end
+  
+  return BladeHits
+end
+
+function module:attack()
+  local BladeHits = self:GetBladeHits()
+  
+  game:GetService("ReplicatedStorage").Modules.Net:WaitForChild("RE/RegisterAttack"):FireServer(0)
+  
+  for _, Hit in BladeHits do
+    game:GetService("ReplicatedStorage").Modules.Net:WaitForChild("RE/RegisterHit"):FireServer(Hit)
+  end
+end
+
+spawn(function()
+  while wait(0.05) do -- Tăng tốc độ tấn công bằng cách giảm thời gian chờ
+    module:attack()
+  end
+		end)
 
 print("hook func") 
 print("remove effect") 
