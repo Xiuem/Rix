@@ -5,6 +5,37 @@ elseif _G.Team == "Pirates" then
     game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("SetTeam", "Pirates")
 end
 
+
+local foldername = "Rix Hub"
+local filename = foldername.."/Setting.json"
+function saveSettings()
+    local HttpService = game:GetService("HttpService")
+    local json = HttpService:JSONEncode(_G)
+    if true then
+        if isfolder(foldername) then
+            if isfile(filename) then
+                writefile(filename, json)
+            else
+                writefile(filename, json)
+            end
+        else
+            makefolder(foldername)
+        end
+    end
+end
+
+function loadSettings()
+    local HttpService = game:GetService("HttpService")
+    if isfolder(foldername) then
+        if isfile(filename) then
+            _G = HttpService:JSONDecode(readfile(filename))
+        end
+    end
+end
+
+loadSettings()
+
+
 local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
 local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
 local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
@@ -2549,12 +2580,20 @@ spawn(function()
     end
 end)
 
-local ToggleFast = Tabs.Sf:AddToggle("MyToggle", {Title = "Fast Attack", Default = true })
+local ListB = {"No Quest", "Quest"}
+    BoneFMode = "No Quest"
+    
+    local methodxuong = Tabs.Sf:AddDropdown("DropdownTweenSpeed", {
+    Title = "Method Bone & Cake Prince",
+    Values = ListB,
+    Multi = false,
+    Default = BoneFMode,
+})
+methodxuong:SetValue("No Quest")
+methodxuong:OnChanged(function(Value)
+    BoneFMode = Value
+				end)
 
-    ToggleFast:OnChanged(function(Value)
-      UFFF = Value
-						end)
-						
 		local ToggleBringMob = Tabs.Sf:AddToggle("ToggleBringMob", {Title = "Bring Mob",Description = "", Default = true })
     ToggleBringMob:OnChanged(function(Value)
         _G.BringMob = Value
@@ -2801,23 +2840,127 @@ SliderPosZ:SetValue(0)
     Content = "Auto Framing"
 				})			
 				
-				
-				Tabs.St:AddParagraph({
-					Title="Verison :",
-					Content="Script Version : [Skid] \n Language : English \n Script Name : Skid "})
-					ShopDevilSell={}local a=game.ReplicatedStorage:FindFirstChild("Remotes").CommF_:InvokeServer("GetFruits")for a,a in next,a do if a.OnSale then table.insert(ShopDevilSell,a.Name)end end;
-					Tabs.St:AddParagraph({
-						Title="Shop Devils Fruits :",
-						Content="Fruits On Sale : "..table.concat(ShopDevilSell,",")})function CheckRace()local a=game.ReplicatedStorage.Remotes.CommF_:InvokeServer("Wenlocktoad","1")local b=game.ReplicatedStorage.Remotes.CommF_:InvokeServer("Alchemist","1")if game.Players.LocalPlayer.Character:FindFirstChild("RaceTransformed")then return game:GetService("Players").LocalPlayer.Data.Race.Value.." V4"end;if a==-2 then return game:GetService("Players").LocalPlayer.Data.Race.Value.." V3"end;if b==-2 then return game:GetService("Players").LocalPlayer.Data.Race.Value.." V2"end;return game:GetService("Players").LocalPlayer.Data.Race.Value.." V1"end;
-						Tabs.St:AddParagraph({
-							Title="Players Status :",
-							Content="Name : "..game.Players.LocalPlayer.Name.." \n Level : "..game.Players.LocalPlayer.Data.Level.Value.." \n Race : "..CheckRace().." \n Beli : "..game.Players.LocalPlayer.Data.Beli.Value.." \n Fragments : "..game.Players.LocalPlayer.Data.Fragments.Value.." Bounty : "..tostring(game:GetService("Players").LocalPlayer.leaderstats["Bounty/Honor"].Value)..""})if TravelZou then function CheckKatakuri(a)if string.len(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CakePrinceSpawner"))==88 then a:SetDesc("Killed : "..string.sub(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CakePrinceSpawner"),39,41)..' / 500')elseif string.len(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CakePrinceSpawner"))==87 then a:SetDesc("Killed : "..string.sub(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CakePrinceSpawner"),39,40)..' / 500')elseif string.len(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CakePrinceSpawner"))==86 then a:SetDesc("Killed : "..string.sub(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CakePrinceSpawner"),39,39)..' / 500')else a:SetDesc("Katakuri : 🟢")end end;
-					local a=Tabs.St:AddParagraph({
-						Title="Dough King - Katakuri Status :",
-						Content=""})spawn(function()while wait()do CheckKatakuri(a)end end)end;function MirageIslandCheck()if game.Workspace._WorldOrigin.Locations:FindFirstChild('Mirage Island')then return"✅"else return"❌"end;return"❌"end;function KitsuneIslandCheck()if game.Workspace.Map:FindFirstChild("KitsuneIsland")then return"✅"else return"❌"end;return"❌"end;function MoonTextureId()if TravelMain then return game:GetService("Lighting").FantasySky.MoonTextureId elseif TravelDressrosa then return game:GetService("Lighting").FantasySky.MoonTextureId elseif TravelZou then return game:GetService("Lighting").Sky.MoonTextureId end;if game:GetService("Lighting"):FindFirstChild("FantasySky")then return game:GetService("Lighting").FantasySky.MoonTextureId elseif game:GetService("Lighting"):FindFirstChild("Sky")then return game:GetService("Lighting").Sky.MoonTextureId end end;function CheckMoon()moon8="http://www.roblox.com/asset/?id=9709150401"moon7="http://www.roblox.com/asset/?id=9709150086"moon6="http://www.roblox.com/asset/?id=9709149680"moon5="http://www.roblox.com/asset/?id=9709149431"moon4="http://www.roblox.com/asset/?id=9709149052"moon3="http://www.roblox.com/asset/?id=9709143733"moon2="http://www.roblox.com/asset/?id=9709139597"moon1="http://www.roblox.com/asset/?id=9709135895"moonreal=MoonTextureId()cofullmoonkothangbeo="Bad Moon"if moonreal==moon5 or moonreal==moon4 then if moonreal==moon5 then return"Full Moon"elseif moonreal==moon4 then return"Next Night"end end;return cofullmoonkothangbeo end;function function6()return math.floor(game.Lighting.ClockTime)end;function getServerTime()RealTime=tostring(math.floor(game.Lighting.ClockTime*100)/100)RealTime=tostring(game.Lighting.ClockTime)RealTimeTable=RealTime:split(".")Minute,Second=RealTimeTable[1],tonumber(0+tonumber(RealTimeTable[2]/100))*60;return Minute,Second end;function function8()local a=game.Lighting;local a=a.ClockTime;if CheckMoon()=="Full Moon"and a<=5 then return tostring(function6()).." ( Will End Moon In "..math.floor(5-a).." Minutes )"elseif CheckMoon()=="Full Moon"and(a>5 and a<12)then return tostring(function6()).." ( Fake Moon )"elseif CheckMoon()=="Full Moon"and(a>12 and a<18)then return tostring(function6()).." ( Will Full Moon In "..math.floor(18-a).." Minutes )"elseif CheckMoon()=="Full Moon"and(a>18 and a<=24)then return tostring(function6()).." ( Will End Moon In "..math.floor(24+6-a).." Minutes )"end;if CheckMoon()=="Next Night"and a<12 then return tostring(function6()).." ( Will Full Moon In "..math.floor(18-a).." Minutes )"elseif CheckMoon()=="Next Night"and a>12 then return tostring(function6()).." ( Will Full Moon In "..math.floor(18+12-a).." Minutes )"end;return tostring(function6())end;
-						local a=Tabs.St:AddParagraph({
-							Title="Server Status :",
-							Content="Mirage : "..MirageIslandCheck().." \nKitsune : "..KitsuneIslandCheck().." \nFull Moon : "..CheckMoon().." \nServer Time : "..getServerTime().." - Full Moon : "..function8()..""})spawn(function()while wait()do a:SetDesc("Mirage : "..MirageIslandCheck().." \nKitsune : "..KitsuneIslandCheck().." \nFull Moon : "..CheckMoon().." \nServer Time : "..getServerTime().." - Full Moon : "..function8().."")end end)function CheckMaterialCount()local a={}for b,b in pairs(game:GetService("ReplicatedStorage").Remotes["CommF_"]:InvokeServer("getInventory"))do if b["Type"]=="Material"then table.insert(a,b.Name.." : "..b["Count"])end end;local a=table.concat(a,"\n")return a end;
-						local a=Tabs.St:AddParagraph({
-							Title="Material Inventory :",
-							Content=CheckMaterialCount()})spawn(function()while wait(5)do a:SetDesc(CheckMaterialCount())end end)
+				local ToggleLevel = Tabs.At:AddToggle("ToggleLevel", {
+        Title = "Auto Fram Level",
+        Description = "",
+        Default = false })
+    ToggleLevel:OnChanged(function(Value)
+        _G.AutoLevel = Value
+								saveSettings()
+        if Value == false then
+            wait()
+            toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
+            wait()
+        end
+    end)
+    Options.ToggleLevel:SetValue(false)
+    spawn(function()
+        while task.wait() do
+        if _G.AutoLevel then
+        pcall(function()
+          CheckLevel()
+          if not string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text, NameMon) or game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false then
+          game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
+          toTarget(CFrameQ)
+          if (CFrameQ.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 5 then
+          game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StartQuest",NameQuest,QuestLv)
+          end
+          elseif string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text, NameMon) or game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == true then
+          for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+          if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
+          if v.Name == Ms then
+          repeat wait(_G.Fast_Delay)
+          AttackNoCoolDown()
+          bringmob = true
+          AutoHaki()
+          EquipTool(SelectWeapon)
+          Tween(v.HumanoidRootPart.CFrame * Pos)
+          v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
+          v.HumanoidRootPart.Transparency = 1
+          v.Humanoid.JumpPower = 0
+          v.Humanoid.WalkSpeed = 0
+          v.HumanoidRootPart.CanCollide = false
+          FarmPos = v.HumanoidRootPart.CFrame
+          MonFarm = v.Name
+          until not _G.AutoLevel or not v.Parent or v.Humanoid.Health <= 0 or not game:GetService("Workspace").Enemies:FindFirstChild(v.Name) or game.Players.LocalPlayer.PlayerGui.Main.Quest.Visible == false
+          bringmob = false
+        end   
+          end
+          end
+          for i,v in pairs(game:GetService("Workspace")["_WorldOrigin"].EnemySpawns:GetChildren()) do
+          if string.find(v.Name,NameMon) then
+          if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.Position).Magnitude >= 10 then
+            Tween(v.HumanoidRootPart.CFrame * Pos)
+          end
+          end
+          end
+          end
+          end)
+        end
+        end
+        end)        
+				local ToggleBone = Tabs.At:AddToggle("ToggleBone", {
+    Title = "Auto Farm Bone",
+    Description = "", 
+    Default = false })
+ToggleBone:OnChanged(function(Value)
+    _G.AutoBone = Value
+    saveSettings()
+    if Value == false then
+        wait()
+        Tween(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
+        wait()
+    end
+end)
+Options.ToggleBone:SetValue(false)
+local BoneCFrame = CFrame.new(-9515.75, 174.8521728515625, 6079.40625)
+local BoneCFrame2 = CFrame.new(-9359.453125, 141.32679748535156, 5446.81982421875)
+spawn(function()
+    while wait() do
+        if _G.AutoBone then
+            pcall(function()
+                local QuestTitle = game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text
+                if not string.find(QuestTitle, "Demonic Soul") then
+                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
+                end
+                if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false then
+                 toTarget(BoneCFrame)
+                if (BoneCFrame.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 3 then    
+                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StartQuest","HauntedQuest2",1)
+                    end
+                elseif game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == true then
+                    if game:GetService("Workspace").Enemies:FindFirstChild("Reborn Skeleton") or game:GetService("Workspace").Enemies:FindFirstChild("Living Zombie") or game:GetService("Workspace").Enemies:FindFirstChild("Demonic Soul") or game:GetService("Workspace").Enemies:FindFirstChild("Posessed Mummy") then
+                        for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                            if v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
+                                if v.Name == "Reborn Skeleton" or v.Name == "Living Zombie" or v.Name == "Demonic Soul" or v.Name == "Posessed Mummy" then
+                                    if string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text, "Demonic Soul") then
+                                        repeat wait(_G.Fast_Delay)
+                                            AttackNoCoolDown()
+                                            AutoHaki()
+                                            bringmob = true
+                                            EquipTool(SelectWeapon)
+                                            Tween(v.HumanoidRootPart.CFrame * Pos)
+			                                v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
+                                            v.HumanoidRootPart.Transparency = 1
+                                            v.Humanoid.JumpPower = 0
+                                            v.Humanoid.WalkSpeed = 0
+                                            v.HumanoidRootPart.CanCollide = false
+                                            FarmPos = v.HumanoidRootPart.CFrame
+                                            MonFarm = v.Name
+                                        until not _G.AutoBone or v.Humanoid.Health <= 0 or not v.Parent or game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false
+                                    else
+                                        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
+                                        bringmob = false
+                                    end
+                                end
+                            end
+                        end
+                    else
+                    end
+                end
+            end)
+        end
+    end
+end)
+
+		
