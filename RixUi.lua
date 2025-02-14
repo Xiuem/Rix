@@ -2383,17 +2383,7 @@ function StoreFruit()
     end
 end
 
-
-
-function LPH_NO_VIRTUALIZE(func)
-    return func
-end
-function LPH_JIT_MAX(func)
-    return func
-end
-NoAttackAnimation = true
-local DmgAttack = game:GetService("ReplicatedStorage").Assets.GUI:WaitForChild("DamageCounter")
-——local module = {
+  local module = {
   NextAttack = 0,
   Distance = 55,
   attackMobs = true,
@@ -2498,7 +2488,7 @@ loadSettings()
 local Fluent = loadstring(game:HttpGet("https://raw.githubusercontent.com/Knuxy92/Ui-linoria/main/Fluent/Fluent.lua"))()
 
 local Window = Fluent:CreateWindow({
-    Title = "Naoki Hub",
+    Title = "Rix Hub",
     SubTitle = "discord.gg/25ms",
     TabWidth = 140,
     Size = UDim2.fromOffset(480, 320),
