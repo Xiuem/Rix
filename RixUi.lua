@@ -1,25 +1,4 @@
 
-local ScreenGui = Instance.new("ScreenGui")
-local TextLabel = Instance.new("TextLabel")
-local UIGradient = Instance.new("UIGradient")
-ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
-ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-TextLabel.Parent = ScreenGui
-TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-TextLabel.BackgroundTransparency = 1.000
-TextLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
-TextLabel.BorderSizePixel = 0
-TextLabel.Position = UDim2.new(0.359138072, 0, -0.025062656, 0)
-TextLabel.Size = UDim2.new(0, 200, 0, 50)
-TextLabel.Font = Enum.Font.FredokaOne
-TextLabel.Text = "discord.gg/25ms"
-TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-TextLabel.TextSize = 19.000
-
-UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(255, 255, 255)), ColorSequenceKeypoint.new(0.01, Color3.fromRGB(255, 0, 242)), ColorSequenceKeypoint.new(0.16, Color3.fromRGB(59, 200, 251)), ColorSequenceKeypoint.new(0.35, Color3.fromRGB(247, 0, 255)), ColorSequenceKeypoint.new(0.68, Color3.fromRGB(8, 255, 214)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(114, 187, 255))}
-UIGradient.Parent = TextLabel
-loadSettings()
-
 if _G.Team == "Marines" then
     game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("SetTeam", "Marines")
 elseif _G.Team == "Pirates" then
@@ -2193,7 +2172,7 @@ spawn(function()
    spawn(function()
 			while task.wait() do
 				pcall(function()
-					if _G.AutoEvoRace or _G.CastleRaid or _G.CollectAzure or _G.TweenToKitsune or _G.GhostShip or _G.Ship or _G.Auto_Holy_Torch or _G.TeleportPly or _G.Tweenfruit or _G.AutoFishCrew or _G.AutoShark or _G.AutoCakeV2 or _G.FocusedBoss or AutoFarmAcient or _G.AutoQuestRace or Auto_Law or AutoTushita or _G.AutoHolyTorch or _G.AutoTerrorshark or _G.farmpiranya or _G.AutoNear or _G.Ectoplasm or AutoEvoRace or AutoBartilo or _G.AutoLevel or _G.Clip2 or _G.AutoBone or _G.AutoBoss or AutoFarmMasGun or AutoFarmMasDevilFruit or AutoHallowSycthe or AutoTushita or _G.CakePrince or _G.AutoEliteor or AutoNextIsland or Musketeer or _G.AutoMaterial or _G.Factory or _G.SwanGlasses or _G.AutoFrozenDimension or _G.AutoUpgrade or _G.TweenToFrozenDimension then
+					if _G.AutoEvoRace or _G.CastleRaid or _G.CollectAzure or _G.TweenToKitsune or _G.GhostShip or _G.Ship or _G.Auto_Holy_Torch or _G.TeleportPly or _G.Tweenfruit or _G.AutoFishCrew or _G.AutoShark or _G.AutoCakeV2 or _G.FocusedBoss or AutoFarmAcient or _G.AutoQuestRace or Auto_Law or AutoTushita or _G.AutoHolyTorch or _G.AutoTerrorshark or _G.farmpiranya or _G.AutoNear or _G.Ectoplasm or AutoEvoRace or AutoBartilo or _G.AutoLevel or _G.Clip2 or _G.AutoBone or _G.AutoBoss or AutoFarmMasGun or AutoFarmMasDevilFruit or AutoHallowSycthe or AutoTushita or _G.CakePrince or _G.AutoEliteor or AutoNextIsland or Musketeer or _G.AutoMaterial or _G.Factory or _G.SwanGlasses or _G.AutoFrozenDimension or _G.AutoUpgrade or _G.TweenToFrozenDimension or _G.hadesinvis then
 						if not game:GetService("Players").LocalPlayer.Character.HumanoidRootPart:FindFirstChild("BodyClip") then
 							local Noclip = Instance.new("BodyVelocity")
 							Noclip.Name = "BodyClip"
@@ -2211,7 +2190,7 @@ spawn(function()
 spawn(function()
   pcall(function()
     game:GetService("RunService").Stepped:Connect(function()
-      if _G.AutoEvoRace or _G.CastleRaid or _G.CollectAzure or _G.TweenToKitsune or _G.GhostShip or _G.Ship or _G.Auto_Holy_Torch or _G.TeleportPly or _G.Tweenfruit or _G.AutoFishCrew or _G.AutoShark or _G.AutoCakeV2 or _G.FocusedBoss or AutoFarmAcient or _G.AutoQuestRace or Auto_Law or AutoTushita or _G.AutoHolyTorch or _G.AutoTerrorshark or _G.farmpiranya or _G.AutoNear or _G.Ectoplasm or AutoEvoRace or AutoBartilo or _G.AutoLevel or _G.Clip2 or _G.AutoBone or _G.AutoBoss or AutoFarmMasGun or AutoFarmMasDevilFruit or AutoHallowSycthe or AutoTushita or _G.CakePrince or _G.AutoEliteor or AutoNextIsland or Musketeer or _G.AutoMaterial or _G.Factory or _G.SwanGlasses or _G.AutoFrozenDimension or _G.AutoUpgrade or _G.TweenToFrozenDimension then
+      if _G.AutoEvoRace or _G.CastleRaid or _G.CollectAzure or _G.TweenToKitsune or _G.GhostShip or _G.Ship or _G.Auto_Holy_Torch or _G.TeleportPly or _G.Tweenfruit or _G.AutoFishCrew or _G.AutoShark or _G.AutoCakeV2 or _G.FocusedBoss or AutoFarmAcient or _G.AutoQuestRace or Auto_Law or AutoTushita or _G.AutoHolyTorch or _G.AutoTerrorshark or _G.farmpiranya or _G.AutoNear or _G.Ectoplasm or AutoEvoRace or AutoBartilo or _G.AutoLevel or _G.Clip2 or _G.AutoBone or _G.AutoBoss or AutoFarmMasGun or AutoFarmMasDevilFruit or AutoHallowSycthe or AutoTushita or _G.CakePrince or _G.AutoEliteor or AutoNextIsland or Musketeer or _G.AutoMaterial or _G.Factory or _G.SwanGlasses or _G.AutoFrozenDimension or _G.AutoUpgrade or _G.TweenToFrozenDimension or _G.hadesinvis then
       for i,v in pairs(game:GetService("Players").LocalPlayer.Character:GetDescendants()) do
       if v:IsA("BasePart") then
       v.CanCollide = false
@@ -2344,6 +2323,33 @@ spawn(function()
     end
 end)
 
+local foldername = "Rix Hub"
+local filename = foldername.."/Setting.json"
+function saveSettings()
+    local HttpService = game:GetService("HttpService")
+    local json = HttpService:JSONEncode(_G)
+    if true then
+        if isfolder(foldername) then
+            if isfile(filename) then
+                writefile(filename, json)
+            else
+                writefile(filename, json)
+            end
+        else
+            makefolder(foldername)
+        end
+    end
+end
+
+function loadSettings()
+    local HttpService = game:GetService("HttpService")
+    if isfolder(foldername) then
+        if isfile(filename) then
+            _G = HttpService:JSONDecode(readfile(filename))
+        end
+    end
+			end
+
   function AutoHaki()
     if not game:GetService("Players").LocalPlayer.Character:FindFirstChild("HasBuso") then
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Buso")
@@ -2454,62 +2460,72 @@ Tabs.Sf:AddParagraph({
     Content = "Setting Framing"
 				})
 				
-				local DropdownSelectWeapon = Tabs.Sf:AddDropdown("DropdownSelectWeapon", {
-    Title = "Select Weapons",
-    Description = "",
-    Values = {'Melee', 'Sword', 'Blox Fruits', 'Gun', 'All'},
+				Toggle = Tabs.Sf:AddToggle("MyToggle", {Title = "Hide Mobs", Description = "Invisible monster for have better fps", Default = true })
+    Toggle:OnChanged(function(Value)
+        _G.hadesinvis = Value		
+        saveSettings() 
+    end)
+    spawn(function()
+    while wait() do
+        if _G.hadesinvis then
+            pcall(function()
+                for i, v in pairs(game:GetService("Workspace").Enemies:GetDescendants()) do
+                    if v.ClassName == "MeshPart" then
+                        v.Transparency = 1
+                    end
+                end
+                for i, v in pairs(game:GetService("Workspace").Enemies:GetDescendants()) do
+                    if v.Name == "Head" then
+                        v.Transparency = 1
+                    end
+                end
+                for i, v in pairs(game:GetService("Workspace").Enemies:GetDescendants()) do
+                    if v.ClassName == "Accessory" then
+                        v.Handle.Transparency = 1
+                    end
+                end
+                for i, v in pairs(game:GetService("Workspace").Enemies:GetDescendants()) do
+                    if v.ClassName == "Decal" then
+                        v.Transparency = 1
+                    end
+                end
+            end)
+        end
+    end
+end)
+
+    local Dropdown = Tabs.Sf:AddDropdown("Dropdown", {
+    Title = "Weapon",
+    Values = {"Melee", "Sword"},
     Multi = false,
     Default = 1,
 })
-DropdownSelectWeapon:SetValue('Melee')
-DropdownSelectWeapon:OnChanged(function(Value)
-    ChooseWeapon = Value
+
+Dropdown:SetValue("Melee")
+
+Dropdown:OnChanged(function(Value)
+    _G.SelectWeapon = Value
 end)
 
 task.spawn(function()
     while wait() do
         pcall(function()
-            if ChooseWeapon == "All" then
-                local weapons = {"Melee", "Blox Fruit", "Sword"}
-                for _, weaponType in ipairs(weapons) do
-                    for _, v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
-                        if v.ToolTip == weaponType then
-                            if game.Players.LocalPlayer.Backpack:FindFirstChild(tostring(v.Name)) then
-                                SelectWeapon = v.Name
-                                wait(4) 
-                            end
-                        end
-                    end
-                end
-            elseif ChooseWeapon == "Melee" then
-                for _, v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+            local player = game.Players.LocalPlayer
+            local backpack = player.Backpack
+
+            if _G.SelectWeapon == "Melee" then
+                for i, v in pairs(backpack:GetChildren()) do
                     if v.ToolTip == "Melee" then
-                        if game.Players.LocalPlayer.Backpack:FindFirstChild(tostring(v.Name)) then
-                            SelectWeapon = v.Name
+                        if backpack:FindFirstChild(tostring(v.Name)) then
+                            _G.SelectWeapon = v.Name
                         end
                     end
                 end
-            elseif ChooseWeapon == "Sword" then
-                for _, v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+            elseif _G.SelectWeapon == "Sword" then
+                for i, v in pairs(backpack:GetChildren()) do
                     if v.ToolTip == "Sword" then
-                        if game.Players.LocalPlayer.Backpack:FindFirstChild(tostring(v.Name)) then
-                            SelectWeapon = v.Name
-                        end
-                    end
-                end
-            elseif ChooseWeapon == "Gun" then
-                for _, v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
-                    if v.ToolTip == "Gun" then
-                        if game.Players.LocalPlayer.Backpack:FindFirstChild(tostring(v.Name)) then
-                            SelectWeapon = v.Name
-                        end
-                    end
-                end
-            elseif ChooseWeapon == "Blox Fruit" then
-                for _, v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
-                    if v.ToolTip == "Blox Fruit" then
-                        if game.Players.LocalPlayer.Backpack:FindFirstChild(tostring(v.Name)) then
-                            SelectWeapon = v.Name
+                        if backpack:FindFirstChild(tostring(v.Name)) then
+                            _G.SelectWeapon = v.Name
                         end
                     end
                 end
@@ -2616,6 +2632,7 @@ local ToggleFast = Tabs.Sf:AddToggle("MyToggle", {Title = "Fast Attack", Default
 			local ToggleRemoveNotify = Tabs.Sf:AddToggle("ToggleRemoveNotify", {Title = "Remove Notification",Description = "", Default = false })
 ToggleRemoveNotify:OnChanged(function(Value)
     RemoveNotify = Value
+				saveSettings()
     end)
     Options.ToggleRemoveNotify:SetValue(false)
 
@@ -2637,12 +2654,14 @@ ToggleRemoveNotify:OnChanged(function(Value)
     elseif _G.WhiteScreen == false then
         game:GetService("RunService"):Set3dRenderingEnabled(true)
             end
+												saveSettings()
         end)
         Options.ToggleWhite:SetValue(false)
 								
 				local ToggleRemove = Tabs.Sf:AddToggle("ToggleRemove", {Title = "Remove DameText",Description = "", Default = false })
 ToggleRemove:OnChanged(function(Value)
     _G.RemoveDameText = Value
+				saveSettings()
     end)
     Options.ToggleRemove:SetValue(false)
 
@@ -2659,6 +2678,7 @@ ToggleRemove:OnChanged(function(Value)
 		local ToggleAutoT = Tabs.Sf:AddToggle("ToggleAutoT", {Title = "Turn On V3", Description = "", Default = false })
 ToggleAutoT:OnChanged(function(Value)
     _G.AutoT = Value
+				saveSettings()
     end)
  Options.ToggleAutoT:SetValue(false)
  spawn(function()
@@ -2675,6 +2695,7 @@ ToggleAutoT:OnChanged(function(Value)
 local ToggleAutoY = Tabs.Sf:AddToggle("ToggleAutoY", {Title = "Turn On V4", Description = "", Default = false })
 ToggleAutoY:OnChanged(function(Value)
     _G.AutoY = Value
+				saveSettings()
 end)
 
 Options.ToggleAutoY:SetValue(false)
