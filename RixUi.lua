@@ -2433,7 +2433,7 @@ Tabs.Sf:AddParagraph({
     Content = "Setting Framing"
 				})
 				
-				Toggle = Tabs.Sf:AddToggle("MyToggle", {Title = "Hide Mobs", Description = "Invisible monster for have better fps", Default = true })
+				Toggle = Tabs.Sf:AddToggle("MyToggle", {Title = "Hide Mobs", Description = "Invisible monster for have better fps", Default = false })
     Toggle:OnChanged(function(Value)
         _G.hadesinvis = Value		
     end)
@@ -2604,7 +2604,6 @@ local ToggleFast = Tabs.Sf:AddToggle("MyToggle", {Title = "Fast Attack", Default
 			local ToggleRemoveNotify = Tabs.Sf:AddToggle("ToggleRemoveNotify", {Title = "Remove Notification",Description = "", Default = false })
 ToggleRemoveNotify:OnChanged(function(Value)
     RemoveNotify = Value
-				saveSettings()
     end)
     Options.ToggleRemoveNotify:SetValue(false)
 
@@ -2626,14 +2625,12 @@ ToggleRemoveNotify:OnChanged(function(Value)
     elseif _G.WhiteScreen == false then
         game:GetService("RunService"):Set3dRenderingEnabled(true)
             end
-												saveSettings()
         end)
         Options.ToggleWhite:SetValue(false)
 								
 				local ToggleRemove = Tabs.Sf:AddToggle("ToggleRemove", {Title = "Remove DameText",Description = "", Default = false })
 ToggleRemove:OnChanged(function(Value)
     _G.RemoveDameText = Value
-				saveSettings()
     end)
     Options.ToggleRemove:SetValue(false)
 
@@ -2650,7 +2647,6 @@ ToggleRemove:OnChanged(function(Value)
 		local ToggleAutoT = Tabs.Sf:AddToggle("ToggleAutoT", {Title = "Turn On V3", Description = "", Default = false })
 ToggleAutoT:OnChanged(function(Value)
     _G.AutoT = Value
-				saveSettings()
     end)
  Options.ToggleAutoT:SetValue(false)
  spawn(function()
