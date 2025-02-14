@@ -2581,17 +2581,17 @@ spawn(function()
 end)
 
 local ListB = {"No Quest", "Quest"}
-    BoneFMode = "No Quest"
+    BoneCakeMode = "No Quest"
     
-    local methodxuong = Tabs.Sf:AddDropdown("DropdownTweenSpeed", {
+    local methodBoneCake = Tabs.Sf:AddDropdown("DropdownmethodBoneCake", {
     Title = "Method Bone & Cake Prince",
     Values = ListB,
     Multi = false,
     Default = BoneFMode,
 })
-methodxuong:SetValue("No Quest")
-methodxuong:OnChanged(function(Value)
-    BoneFMode = Value
+methodBoneCake:SetValue("No Quest")
+methodBoneCake:OnChanged(function(Value)
+    BoneCakeMode = Value
 				end)
 
 		local ToggleBringMob = Tabs.Sf:AddToggle("ToggleBringMob", {Title = "Bring Mob",Description = "", Default = true })
@@ -2899,6 +2899,7 @@ SliderPosZ:SetValue(0)
         end
         end
         end)        
+								
 				local ToggleBone = Tabs.At:AddToggle("ToggleBone", {
     Title = "Auto Farm Bone",
     Description = "", 
@@ -2916,51 +2917,122 @@ Options.ToggleBone:SetValue(false)
 local BoneCFrame = CFrame.new(-9515.75, 174.8521728515625, 6079.40625)
 local BoneCFrame2 = CFrame.new(-9359.453125, 141.32679748535156, 5446.81982421875)
 spawn(function()
-    while wait() do
-        if _G.AutoBone then
+    while wait() do 
+        if BoneCakeMode == "No Quest" and _G.AutoBone and World3 then
             pcall(function()
-                local QuestTitle = game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text
-                if not string.find(QuestTitle, "Demonic Soul") then
-                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
-                end
-                if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false then
-                 toTarget(BoneCFrame)
-                if (BoneCFrame.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 3 then    
-                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StartQuest","HauntedQuest2",1)
-                    end
-                elseif game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == true then
-                    if game:GetService("Workspace").Enemies:FindFirstChild("Reborn Skeleton") or game:GetService("Workspace").Enemies:FindFirstChild("Living Zombie") or game:GetService("Workspace").Enemies:FindFirstChild("Demonic Soul") or game:GetService("Workspace").Enemies:FindFirstChild("Posessed Mummy") then
-                        for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
-                            if v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
-                                if v.Name == "Reborn Skeleton" or v.Name == "Living Zombie" or v.Name == "Demonic Soul" or v.Name == "Posessed Mummy" then
-                                    if string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text, "Demonic Soul") then
-                                        repeat wait(_G.Fast_Delay)
-                                            AttackNoCoolDown()
-                                            AutoHaki()
-                                            bringmob = true
-                                            EquipTool(SelectWeapon)
-                                            Tween(v.HumanoidRootPart.CFrame * Pos)
-			                                v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
-                                            v.HumanoidRootPart.Transparency = 1
-                                            v.Humanoid.JumpPower = 0
-                                            v.Humanoid.WalkSpeed = 0
-                                            v.HumanoidRootPart.CanCollide = false
-                                            FarmPos = v.HumanoidRootPart.CFrame
-                                            MonFarm = v.Name
-                                        until not _G.AutoBone or v.Humanoid.Health <= 0 or not v.Parent or game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false
-                                    else
-                                        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
-                                        bringmob = false
-                                    end
+                if game:GetService("Workspace").Enemies:FindFirstChild("Reborn Skeleton") or 
+                   game:GetService("Workspace").Enemies:FindFirstChild("Living Zombie") or 
+                   game:GetService("Workspace").Enemies:FindFirstChild("Demonic Soul") or 
+                   game:GetService("Workspace").Enemies:FindFirstChild("Posessed Mummy") then
+                    NeedAttacking = false
+                    for i, v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                        if (v.Name == "Reborn Skeleton" or v.Name == "Living Zombie" or 
+                            v.Name == "Demonic Soul" or v.Name == "Posessed Mummy") and 
+                            v:FindFirstChild("Humanoid") and 
+                            v:FindFirstChild("HumanoidRootPart") and 
+                            v.Humanoid.Health > 0 then
+                            repeat 
+                                task.wait()
+                                AutoHaki()
+                                EquipWeapon(_G.SelectWeapon)
+                                v.HumanoidRootPart.CanCollide = false
+                                v.Humanoid.WalkSpeed = 0
+                                v.Head.CanCollide = false 
+                                topos(v.HumanoidRootPart.CFrame * Pos)
+                                NeedAttacking = true
+                                NameBoneMon = v.Name
+                                if v.Name == "Demonic Soul" then
+                                    BringMobBone(v.Name, CFrame.new(-9497.908203125, 172.1048126220703, 6148.97119140625))
+                                elseif v.Name == "Living Zombie" then
+                                    BringMobBone(v.Name, CFrame.new(-10143.466796875, 138.6266632080078, 5974.3330078125))
+                                elseif v.Name == "Reborn Skeleton" then
+                                    BringMobBone(v.Name, CFrame.new(-8760.986328125, 142.1048126220703, 6039.1083984375))
+                                elseif v.Name == "Posessed Mummy" then
+                                    BringMobBone(v.Name, CFrame.new(-9575.4267578125, 5.792530536651611, 6226.22900390625))
                                 end
-                            end
+                            until not _G.AutoBone or not v.Parent or v.Humanoid.Health <= 0
+                            NeedAttacking = false
+                        end
+                    end
+                else
+                    if BypassTP then
+                        if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - BonePos.Position).Magnitude > 1500 then
+                            BTP(BonePos)
+                        else
+                            topos(BonePos)
                         end
                     else
+                        topos(BonePos)
                     end
+                    UnEquipWeapon(_G.SelectWeapon)
+                    topos(CFrame.new(-9506.234375, 172.130615234375, 6117.0771484375))
                 end
             end)
         end
     end
 end)
 
-		
+spawn(function()
+    while wait() do
+        if BoneCakeMode == "Quest" and _G.AutoBone and World3 then
+            pcall(function()
+                local QuestTitle = game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text
+                if not string.find(QuestTitle, "Demonic Soul") then
+                    NeedAttacking = false
+                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
+                end
+                if not game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible then
+                    NeedAttacking = false
+                    if BypassTP then
+                        if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - BoneQuestPos.Position).Magnitude > 1500 then
+                            BTP(BoneQuestPos)
+                        else
+                            topos(BoneQuestPos)
+                        end
+                    else
+                        topos(BoneQuestPos)
+                    end
+                    if (BoneQuestPos.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 3 then    
+                        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StartQuest","HauntedQuest2",1)
+                    end
+                else
+                    if game:GetService("Workspace").Enemies:FindFirstChild("Reborn Skeleton") or 
+                       game:GetService("Workspace").Enemies:FindFirstChild("Living Zombie") or 
+                       game:GetService("Workspace").Enemies:FindFirstChild("Demonic Soul") or 
+                       game:GetService("Workspace").Enemies:FindFirstChild("Posessed Mummy") then
+                        for i, v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                            if v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 and 
+                               (v.Name == "Reborn Skeleton" or v.Name == "Living Zombie" or 
+                                v.Name == "Demonic Soul" or v.Name == "Posessed Mummy") then
+                                if string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text, "Demonic Soul") then
+                                    repeat 
+                                        task.wait()
+                                        EquipWeapon(_G.SelectWeapon)
+                                        AutoHaki()                                            
+                                        topos(v.HumanoidRootPart.CFrame * Pos)
+                                        v.HumanoidRootPart.CanCollide = false
+                                        v.Humanoid.WalkSpeed = 0
+                                        v.Head.CanCollide = false
+                                        NeedAttacking = true
+                                        NameBoneMon = v.Name
+                                        if v.Name == "Demonic Soul" then
+                                            BringMobBone(v.Name, CFrame.new(-9497.908203125, 172.1048126220703, 6148.97119140625))
+                                        elseif v.Name == "Living Zombie" then
+                                            BringMobBone(v.Name, CFrame.new(-10143.466796875, 138.6266632080078, 5974.3330078125))
+                                        elseif v.Name == "Reborn Skeleton" then
+                                            BringMobBone(v.Name, CFrame.new(-8760.986328125, 142.1048126220703, 6039.1083984375))
+                                        elseif v.Name == "Posessed Mummy" then
+                                            BringMobBone(v.Name, CFrame.new(-9575.4267578125, 5.792530536651611, 6226.22900390625))
+                                        end
+                                    until not _G.AutoBone or v.Humanoid.Health <= 0 or not v.Parent or 
+                                          not game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible
+                                    NeedAttacking = false
+                                end
+                            end
+                        end
+                    end
+                end
+            end)
+        end
+    end
+				end)
