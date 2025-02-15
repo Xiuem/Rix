@@ -2644,14 +2644,6 @@ spawn(function()
     end
 end)
 
-local ToggleFast = Tabs.Setting:AddToggle("ToggleFast", {Title = "Fast attack",Description = "", Default = true })
-    ToggleFast:OnChanged(function(Value)
-        _G.FastAttack = Value
-    end)
-    Options.ToggleFast:SetValue(true)
-
-local Camera = require(game.ReplicatedStorage.Util.CameraShaker)Camera:Stop()
-
     local ToggleBringMob = Tabs.Setting:AddToggle("ToggleBringMob", {Title = "Bring Mob",Description = "", Default = true })
     ToggleBringMob:OnChanged(function(Value)
         _G.BringMob = Value
