@@ -55,18 +55,18 @@ Fluent:Notify({
 				})
 				
 local Tabs = {
-    Setting = Window:AddTab({ Title = "Setting Fram" }),
+	   Status = Window:AddTab({ Title = "Status" }),
 				AutoFram = Window:AddTab({ Title = "Auto Fram" }),
     Local = Window:AddTab({ Title = "Local Player" }),
     Shop = Window:AddTab({ Title = "Shop" }),
     Stack = Window:AddTab({ Title = "Stack Fram" }),
-    Status = Window:AddTab({ Title = "Status" }),
     Other = Window:AddTab({ Title = "Other Fram" }),
     Upgrade = Window:AddTab({ Title = "Upgrade Race" }),
     Fruit = Window:AddTab({ Title = "Fruit & Raid" }),
     Sea = Window:AddTab({ Title = "Sea Event" }),
 				Item = Window:AddTab({ Title = "Quest & Item" }),
 				Config = Window:AddTab({ Title = "Config Ui" }),
+				Setting = Window:AddTab({ Title = "Setting Fram" }),
 }
 local Options = Fluent.Options
 
@@ -2512,117 +2512,23 @@ spawn(function()
         end
     end
 end)
-Tabs.Setting:AddParagraph({
-        Title = "",
-        Content = "Settings To Framing"
-								})
-								
-	local ToggleBringMob = Tabs.Setting:AddToggle("ToggleBringMob", {Title = "Bring Mob",Description = "", Default = true })
-    ToggleBringMob:OnChanged(function(Value)
-        _G.BringMob = Value
-    end)
-    Options.ToggleBringMob:SetValue(true)
-    spawn(function()
-        while wait() do
-            pcall(function()
-                for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
-                    if _G.BringMob and bringmob then
-                        if v.Name == MonFarm and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
-                            if v.Name == "Factory Staff" then
-                                if (v.HumanoidRootPart.Position - FarmPos.Position).Magnitude <= 1000000000 then
-                                    v.Head.CanCollide = false
-                                    v.HumanoidRootPart.CanCollide = false
-                                    v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
-                                    v.HumanoidRootPart.CFrame = FarmPos
-                                    if v.Humanoid:FindFirstChild("Animator") then
-                                        v.Humanoid.Animator:Destroy()
-                                    end
-                                    sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius", math.huge)
-                                end
-                            elseif v.Name == MonFarm then
-                                if (v.HumanoidRootPart.Position - FarmPos.Position).Magnitude <= 1000000000 then
-                                    v.HumanoidRootPart.CFrame = FarmPos
-                                    v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
-                                    v.HumanoidRootPart.Transparency = 1
-                                    v.Humanoid.JumpPower = 0
-                                    v.Humanoid.WalkSpeed = 0
-                                    if v.Humanoid:FindFirstChild("Animator") then
-                                        v.Humanoid.Animator:Destroy()
-                                    end
-                                    v.HumanoidRootPart.CanCollide = false
-                                    v.Head.CanCollide = false
-                                    v.Humanoid:ChangeState(11)
-                                    v.Humanoid:ChangeState(14)
-                                    sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius", math.huge)
-                                end
-                            end
-                        end
-                                end
-                            end
-                        end)
-                end
-																end)							
-								
-		local ToggleAttack = Tabs.Setting:AddToggle("ToggleAttack", {Title = "Fast Attack & Fruit",Description = "", Default = true })
-    ToggleFast:OnChanged(function(Value)
-        _G.FastAttack = Value
-    end)
-    Options.ToggleAttack:SetValue(true)
-				
-				local Camera = require(game.ReplicatedStorage.Util.CameraShaker)Camera:Stop()
-				
-				
-local Dropdown = Tabs.Setting:AddDropdown("Dropdown", {
-        Title = "Select Weapon",
-        Values = {"Melee","Sword","Fruit","Gun"},
-        Multi = false,
-        Default = 1,
-    })
+local Mob_Kill_Cake_Prince = Tabs.Status:AddParagraph({
+    Title = "Cake Prince-Katakuri",
+    Content = ""
+})
 
-    Dropdown:SetValue("Melee")
-
-    Dropdown:OnChanged(function(Value)
-        _G.SelectWeapon = Value
-    end)
-    
-task.spawn(function()
+spawn(function()
 	while wait() do
 		pcall(function()
-			if _G.SelectWeapon == "Melee" then
-				for i ,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
-					if v.ToolTip == "Melee" then
-						if game.Players.LocalPlayer.Backpack:FindFirstChild(tostring(v.Name)) then
-							_G.SelectWeapon = v.Name
-						end
-					end
-				end
-			elseif _G.SelectWeapon == "Sword" then
-				for i ,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
-					if v.ToolTip == "Sword" then
-						if game.Players.LocalPlayer.Backpack:FindFirstChild(tostring(v.Name)) then
-							_G.SelectWeapon = v.Name
-						end
-					end
-				end
-			elseif _G.SelectWeapon == "Gun" then
-				for i ,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
-					if v.ToolTip == "Gun" then
-						if game.Players.LocalPlayer.Backpack:FindFirstChild(tostring(v.Name)) then
-							_G.SelectWeapon = v.Name
-						end
-					end
-				end
-			elseif _G.SelectWeapon == "Fruit" then
-				for i ,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
-					if v.ToolTip == "Blox Fruit" then
-						if game.Players.LocalPlayer.Backpack:FindFirstChild(tostring(v.Name)) then
-							_G.SelectWeapon = v.Name
-						end
-					end
-				end
+			if string.len(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CakePrinceSpawner")) == 88 then
+				Mob_Kill_Cake_Prince:SetDesc("Cạke Prince-Katakuri: "..string.sub(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CakePrinceSpawner"),39,41).."")
+			elseif string.len(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CakePrinceSpawner")) == 87 then
+				Mob_Kill_Cake_Prince:SetDesc("Cake Prince-Katakuri: "..string.sub(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CakePrinceSpawner"),39,40).."")
+			elseif string.len(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CakePrinceSpawner")) == 86 then
+				Mob_Kill_Cake_Prince:SetDesc("Cake Prince-Katakuri: "..string.sub(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CakePrinceSpawner"),39,39).." ")
+			else
+				Mob_Kill_Cake_Prince:SetDesc("Cake Prince : 🟢")
 			end
 		end)
 	end
-	end)
-
-    
+end)
