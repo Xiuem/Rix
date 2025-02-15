@@ -2194,7 +2194,7 @@ spawn(function()
    spawn(function()
 			while task.wait() do
 				pcall(function()
-					if _G.AutoEvoRace or _G.CastleRaid or _G.CollectAzure or _G.TweenToKitsune or _G.GhostShip or _G.Ship or _G.Auto_Holy_Torch or _G.TeleportPly or _G.Tweenfruit or _G.AutoFishCrew or _G.AutoShark or _G.AutoCakeV2 or _G.FocusedBoss or AutoFarmAcient or _G.AutoQuestRace or Auto_Law or AutoTushita or _G.AutoHolyTorch or _G.AutoTerrorshark or _G.farmpiranya or _G.AutoNear or _G.Ectoplasm or AutoEvoRace or AutoBartilo or _G.AutoLevel or _G.Clip2 or _G.AutoBone or _G.AutoBoss or AutoFarmMasGun or AutoFarmMasDevilFruit or AutoHallowSycthe or AutoTushita or _G.CakePrince or _G.AutoEliteor or AutoNextIsland or Musketeer or _G.AutoMaterial or _G.Factory or _G.SwanGlasses or _G.AutoFrozenDimension or _G.AutoUpgrade or _G.TweenToFrozenDimension then
+					if _G.AutoEvoRace or _G.CastleRaid or _G.CollectAzure or _G.TweenToKitsune or _G.GhostShip or _G.Ship or _G.Auto_Holy_Torch or _G.TeleportPly or _G.Tweenfruit or _G.AutoFishCrew or _G.AutoShark or _G.AutoCakeV2 or _G.FocusedBoss or AutoFarmAcient or _G.AutoQuestRace or Auto_Law or AutoTushita or _G.AutoHolyTorch or _G.AutoTerrorshark or _G.farmpiranya or _G.AutoNear or _G.Ectoplasm or AutoEvoRace or AutoBartilo or _G.AutoLevel or _G.Clip2 or _G.AutoBone or _G.AutoBoss or AutoFarmMasGun or AutoFarmMasDevilFruit or AutoHallowSycthe or AutoTushita or _G.CakePrince or _G.AutoEliteor or AutoNextIsland or Musketeer or _G.AutoMaterial or _G.Factory or _G.SwanGlasses or _G.AutoFrozenDimension or _G.AutoUpgrade or _G.TweenToFrozenDimension or _G.hadesinvis then
 						if not game:GetService("Players").LocalPlayer.Character.HumanoidRootPart:FindFirstChild("BodyClip") then
 							local Noclip = Instance.new("BodyVelocity")
 							Noclip.Name = "BodyClip"
@@ -2212,7 +2212,7 @@ spawn(function()
 spawn(function()
   pcall(function()
     game:GetService("RunService").Stepped:Connect(function()
-      if _G.AutoEvoRace or _G.CastleRaid or _G.CollectAzure or _G.TweenToKitsune or _G.GhostShip or _G.Ship or _G.Auto_Holy_Torch or _G.TeleportPly or _G.Tweenfruit or _G.AutoFishCrew or _G.AutoShark or _G.AutoCakeV2 or _G.FocusedBoss or AutoFarmAcient or _G.AutoQuestRace or Auto_Law or AutoTushita or _G.AutoHolyTorch or _G.AutoTerrorshark or _G.farmpiranya or _G.AutoNear or _G.Ectoplasm or AutoEvoRace or AutoBartilo or _G.AutoLevel or _G.Clip2 or _G.AutoBone or _G.AutoBoss or AutoFarmMasGun or AutoFarmMasDevilFruit or AutoHallowSycthe or AutoTushita or _G.CakePrince or _G.AutoEliteor or AutoNextIsland or Musketeer or _G.AutoMaterial or _G.Factory or _G.SwanGlasses or _G.AutoFrozenDimension or _G.AutoUpgrade or _G.TweenToFrozenDimension then
+      if _G.AutoEvoRace or _G.CastleRaid or _G.CollectAzure or _G.TweenToKitsune or _G.GhostShip or _G.Ship or _G.Auto_Holy_Torch or _G.TeleportPly or _G.Tweenfruit or _G.AutoFishCrew or _G.AutoShark or _G.AutoCakeV2 or _G.FocusedBoss or AutoFarmAcient or _G.AutoQuestRace or Auto_Law or AutoTushita or _G.AutoHolyTorch or _G.AutoTerrorshark or _G.farmpiranya or _G.AutoNear or _G.Ectoplasm or AutoEvoRace or AutoBartilo or _G.AutoLevel or _G.Clip2 or _G.AutoBone or _G.AutoBoss or AutoFarmMasGun or AutoFarmMasDevilFruit or AutoHallowSycthe or AutoTushita or _G.CakePrince or _G.AutoEliteor or AutoNextIsland or Musketeer or _G.AutoMaterial or _G.Factory or _G.SwanGlasses or _G.AutoFrozenDimension or _G.AutoUpgrade or _G.TưeenToFrozenDimension or _G.hadesinvis then
       for i,v in pairs(game:GetService("Players").LocalPlayer.Character:GetDescendants()) do
       if v:IsA("BasePart") then
       v.CanCollide = false
@@ -2582,6 +2582,14 @@ task.spawn(function()
                     if v.ToolTip == "Sword" then
                         if backpack:FindFirstChild(tostring(v.Name)) then
                             _G.SelectWeapon = v.Name
+																								end
+																				end
+															 end
+												elseif _G.SelectWeapon == "Fruit" then
+		            		for i, v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+				               	if v.ToolTip == "Blox Fruit" then
+					                  	if backpack:FindFirstChild(tostring(v.Name)) then
+					                     		_G.SelectWeapon = v.Name
                         end
                     end
                 end
@@ -2642,7 +2650,7 @@ local ToggleFast = Tabs.Sf:AddToggle("ToggleFast", {Title = "Fast Attack & Fruit
 local Camera = require(game.ReplicatedStorage.Util.CameraShaker)
 Camera:Stop()
 
-    local ToggleBringMob = Tabs.Setting:AddToggle("ToggleBringMob", {Title = "Bring Mob",Description = "", Default = true })
+    local ToggleBringMob = Tabs.Sf:AddToggle("ToggleBringMob", {Title = "Bring Mob",Description = "", Default = true })
     ToggleBringMob:OnChanged(function(Value)
         _G.BringMob = Value
     end)
