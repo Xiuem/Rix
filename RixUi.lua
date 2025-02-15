@@ -43,7 +43,7 @@ local Window = Fluent:CreateWindow({
     Title = "Rix Hub",
     SubTitle = "   Project Tests Programming Skills", 
     TabWidth = 160, 
-    Size = UDim2.fromOffset(480, 320), 
+    Size = UDim2.fromOffset(580, 320), 
     Acrylic = false, 
     Theme = "Darker", 
     MinimizeKey = Enum.KeyCode.End
@@ -57,17 +57,18 @@ Fluent:Notify({
 				})
 				
 local Tabs = {
-    SE = Window:AddTab({ Title = "Setting Fram" }),
-    At = Window:AddTab({ Title = "Auto Fram" }),
-    Lp = Window:AddTab({ Title = "Local Player" }),
+    Setting = Window:AddTab({ Title = "Setting Fram" }),
+    AutoFram = Window:AddTab({ Title = "Auto Fram" }),
+    Local = Window:AddTab({ Title = "Local Player" }),
     Shop = Window:AddTab({ Title = "Shop" }),
-    Sa = Window:AddTab({ Title = "Stack Fram" }),
-    St = Window:AddTab({ Title = "Status" }),
-    Of = Window:AddTab({ Title = "Other Fram" }),
-    Ur = Window:AddTab({ Title = "Upgrade Race" }),
-    Fr = Window:AddTab({ Title = "Fruit & Raid" }),
-    Sn = Window:AddTab({ Title = "Sea Event" }),
-				It = Window:AddTab({ Title = "Quest & Item" }),
+    Stack = Window:AddTab({ Title = "Stack Fram" }),
+    Status = Window:AddTab({ Title = "Status" }),
+    Other = Window:AddTab({ Title = "Other Fram" }),
+    Upgrade = Window:AddTab({ Title = "Upgrade Race" }),
+    Fruit = Window:AddTab({ Title = "Fruit & Raid" }),
+    Sea = Window:AddTab({ Title = "Sea Event" }),
+				Item = Window:AddTab({ Title = "Quest & Item" }),
+				Config = Window:AddTab({ Title = "Config Ui" }),
 }
 local Options = Fluent.Options
 
@@ -2533,7 +2534,12 @@ spawn(function()
     end
 end)
 
-Toggle = Tabs.SE:AddToggle("MyToggle", {Title = "Hide Mobs", Description = "Invisible monster for have better fps", Default = false })
+Tabs.Setting:AddParagraph({
+    Title = "",
+    Content = "Settings Framing"
+				})				
+
+Toggle = Tabs.Setting:AddToggle("MyToggle", {Title = "Hide Mobs", Description = "Invisible monster for have better fps", Default = false })
     Toggle:OnChanged(function(Value)
         _G.hadesinvis = Value		
     end)
@@ -2566,7 +2572,7 @@ Toggle = Tabs.SE:AddToggle("MyToggle", {Title = "Hide Mobs", Description = "Invi
     end
 				end)
 
-local Dropdown = Tabs.SE:AddDropdown("Dropdown", {
+local Dropdown = Tabs.Setting:AddDropdown("Dropdown", {
         Title = "Select Weapon",
         Values = {"Melee","Sword","Fruit","Gun"},
         Multi = false,
@@ -2619,7 +2625,7 @@ task.spawn(function()
 	end
 	end)
 	
-	local DropdownAttack = Tabs.SE:AddDropdown("DropdownAttack", {
+	local DropdownAttack = Tabs.Setting:AddDropdown("DropdownAttack", {
         Title = "Fast Attack Speed",
         Values = {"0", "0.1", "0.15", "0.155", "0.16", "0.165", "0.17", "0.175", "0.18", "0.185"},
         Multi = false,
@@ -2662,8 +2668,8 @@ spawn(function()
     end
 end)
 
-local ToggleFast = Tabs.SE:AddToggle("ToggleFast", {Title = "Fast Attack & Fruit",Description = "", Default = true })
-    ToggleFast:OnChanged(function(Value)
+local ToggleFast = Tabs.Setting:AddToggle("ToggleFast", {Title = "Fast attack",Description = "", Default = true })
+    ToggleBringMob:OnChanged(function(Value)
         _G.FastAttack = Value
     end)
     Options.ToggleFast:SetValue(true)
@@ -2671,7 +2677,7 @@ local ToggleFast = Tabs.SE:AddToggle("ToggleFast", {Title = "Fast Attack & Fruit
 local Camera = require(game.ReplicatedStorage.Util.CameraShaker)
 Camera:Stop()
 
-		local ToggleBringMob = Tabs.SE:AddToggle("ToggleBringMob", {Title = "Bring Mob",Description = "", Default = true })
+    local ToggleBringMob = Tabs.Setting:AddToggle("ToggleBringMob", {Title = "Bring Mob",Description = "", Default = true })
     ToggleBringMob:OnChanged(function(Value)
         _G.BringMob = Value
     end)
@@ -2717,7 +2723,7 @@ Camera:Stop()
                 end
 																end)
 																
-			local ToggleRemoveNotify = Tabs.SE:AddToggle("ToggleRemoveNotify", {Title = "Remove Notification",Description = "", Default = false })
+			local ToggleRemoveNotify = Tabs.Setting:AddToggle("ToggleRemoveNotify", {Title = "Remove Notification",Description = "", Default = false })
 ToggleRemoveNotify:OnChanged(function(Value)
     RemoveNotify = Value
     end)
@@ -2733,7 +2739,7 @@ ToggleRemoveNotify:OnChanged(function(Value)
         end
     end)
 
-    local ToggleWhite = Tabs.SE:AddToggle("ToggleWhite", {Title = "White Screen",Description = "", Default = false })
+    local ToggleWhite = Tabs.Setting:AddToggle("ToggleWhite", {Title = "White Screen",Description = "", Default = false })
     ToggleWhite:OnChanged(function(Value)
        _G.WhiteScreen = Value
        if _G.WhiteScreen == true then
@@ -2744,7 +2750,7 @@ ToggleRemoveNotify:OnChanged(function(Value)
         end)
         Options.ToggleWhite:SetValue(false)
 								
-				local ToggleRemove = Tabs.SE:AddToggle("ToggleRemove", {Title = "Remove Dame Text",Description = "", Default = false })
+				local ToggleRemove = Tabs.Setting:AddToggle("ToggleRemove", {Title = "Remove Dame Text",Description = "", Default = false })
 ToggleRemove:OnChanged(function(Value)
     _G.RemoveDameText = Value
     end)
@@ -2760,7 +2766,7 @@ ToggleRemove:OnChanged(function(Value)
         end
         end)
 								
-		local ToggleAutoT = Tabs.SE:AddToggle("ToggleAutoT", {Title = "Turn On V3", Description = "", Default = false })
+		local ToggleAutoT = Tabs.Setting:AddToggle("ToggleAutoT", {Title = "Turn On V3", Description = "", Default = false })
 ToggleAutoT:OnChanged(function(Value)
     _G.AutoT = Value
     end)
@@ -2776,7 +2782,7 @@ ToggleAutoT:OnChanged(function(Value)
     end)
 
 
-local ToggleAutoY = Tabs.SE:AddToggle("ToggleAutoY", {Title = "Turn On V4", Description = "", Default = false })
+local ToggleAutoY = Tabs.Setting:AddToggle("ToggleAutoY", {Title = "Turn On V4", Description = "", Default = false })
 ToggleAutoY:OnChanged(function(Value)
     _G.AutoY = Value
 end)
@@ -2795,7 +2801,7 @@ spawn(function()
     end
 end)
 
-local ToggleAutoKen = Tabs.SE:AddToggle("ToggleAutoKen", {Title = "Auto Ken", Description = "", Default = false })
+local ToggleAutoKen = Tabs.Setting:AddToggle("ToggleAutoKen", {Title = "Auto Ken", Description = "", Default = false })
 ToggleAutoKen:OnChanged(function(Value)
     _G.AutoKen = Value
     if Value then
@@ -2817,45 +2823,103 @@ spawn(function()
     end
 				end)						
 				
-	Tabs.SE:AddParagraph({
+	Tabs.Setting:AddParagraph({
     Title = "",
     Content = "Fruit Framing"
 				})				
 			
 			
-local ToggleZ = Tabs.SE:AddToggle("ToggleZ", {Title = "Skill Z",Description = "", Default = true })
+local ToggleZ = Tabs.Setting:AddToggle("ToggleZ", {Title = "Skill Z",Description = "", Default = true })
 ToggleZ:OnChanged(function(Value)
     SkillZ = Value
 end)
 Options.ToggleZ:SetValue(true)
 
-local ToggleX = Tabs.SE:AddToggle("ToggleX", {Title = "Skill X", Description = "",Default = true })
+local ToggleX = Tabs.Setting:AddToggle("ToggleX", {Title = "Skill X", Description = "",Default = true })
 ToggleX:OnChanged(function(Value)
     SkillX = Value
 end)
 Options.ToggleX:SetValue(true)
 
-local ToggleC = Tabs.SE:AddToggle("ToggleC", {Title = "Skill C",Description = "", Default = true })
+local ToggleC = Tabs.Setting:AddToggle("ToggleC", {Title = "Skill C",Description = "", Default = true })
 ToggleC:OnChanged(function(Value)
     SkillC = Value
 end)
 Options.ToggleC:SetValue(true)
 
-local ToggleV = Tabs.SE:AddToggle("ToggleV", {Title = "Skill V",Description = "", Default = true })
+local ToggleV = Tabs.Setting:AddToggle("ToggleV", {Title = "Skill V",Description = "", Default = true })
 ToggleV:OnChanged(function(Value)
     SkillV = Value
 end)
 Options.ToggleV:SetValue(true)
 
-local ToggleF = Tabs.SE:AddToggle("ToggleF", {Title = "Skill F",Description = "", Default = false })
+local ToggleF = Tabs.Setting:AddToggle("ToggleF", {Title = "Skill F",Description = "", Default = false })
 ToggleF:OnChanged(function(Value)
    SkillF = Value
     end)
 Options.ToggleF:SetValue(false)
 
 				
-	Tabs.At:AddParagraph({
+	Tabs.AutoFram:AddParagraph({
     Title = "",
     Content = "Auto Framing"
 				})			
 				
+				local ToggleLevel = Tabs.AutoFram:AddToggle("ToggleLevel", {
+        Title = "Auto Farm Level",
+        Description = "",
+        Default = false })
+    ToggleLevel:OnChanged(function(Value)
+        _G.AutoLevel = Value
+        if Value == false then
+            wait()
+            toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
+            wait()
+        end
+    end)
+    Options.ToggleLevel:SetValue(false)
+    spawn(function()
+        while task.wait() do
+        if _G.AutoLevel then
+        pcall(function()
+          CheckLevel()
+          if not string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text, NameMon) or game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false then
+          game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
+          toTarget(CFrameQ)
+          if (CFrameQ.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 5 then
+          game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StartQuest",NameQuest,QuestLv)
+          end
+          elseif string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text, NameMon) or game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == true then
+          for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+          if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
+          if v.Name == Ms then
+          repeat wait(_G.Fast_Delay)
+          AttackNoCoolDown()
+          bringmob = true
+          AutoHaki()
+          EquipTool(SelectWeapon)
+          Tween(v.HumanoidRootPart.CFrame * Pos)
+          v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
+          v.HumanoidRootPart.Transparency = 1
+          v.Humanoid.JumpPower = 0
+          v.Humanoid.WalkSpeed = 0
+          v.HumanoidRootPart.CanCollide = false
+          FarmPos = v.HumanoidRootPart.CFrame
+          MonFarm = v.Name
+          until not _G.AutoLevel or not v.Parent or v.Humanoid.Health <= 0 or not game:GetService("Workspace").Enemies:FindFirstChild(v.Name) or game.Players.LocalPlayer.PlayerGui.Main.Quest.Visible == false
+          bringmob = false
+        end   
+          end
+          end
+          for i,v in pairs(game:GetService("Workspace")["_WorldOrigin"].EnemySpawns:GetChildren()) do
+          if string.find(v.Name,NameMon) then
+          if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.Position).Magnitude >= 10 then
+            Tween(v.HumanoidRootPart.CFrame * Pos)
+          end
+          end
+          end
+          end
+          end)
+        end
+        end
+        end)        
