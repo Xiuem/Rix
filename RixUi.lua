@@ -57,7 +57,7 @@ Fluent:Notify({
 				})
 				
 local Tabs = {
-    Sf = Window:AddTab({ Title = "Setting Fram" }),
+    SE = Window:AddTab({ Title = "Setting Fram" }),
     At = Window:AddTab({ Title = "Auto Fram" }),
     Lp = Window:AddTab({ Title = "Local Player" }),
     Shop = Window:AddTab({ Title = "Shop" }),
@@ -2533,7 +2533,7 @@ spawn(function()
     end
 end)
 
-Toggle = Tabs.Sf:AddToggle("MyToggle", {Title = "Hide Mobs", Description = "Invisible monster for have better fps", Default = false })
+Toggle = Tabs.SE:AddToggle("MyToggle", {Title = "Hide Mobs", Description = "Invisible monster for have better fps", Default = false })
     Toggle:OnChanged(function(Value)
         _G.hadesinvis = Value		
     end)
@@ -2566,7 +2566,7 @@ Toggle = Tabs.Sf:AddToggle("MyToggle", {Title = "Hide Mobs", Description = "Invi
     end
 				end)
 
-local Dropdown = Tabs.Sf:AddDropdown("Dropdown", {
+local Dropdown = Tabs.SE:AddDropdown("Dropdown", {
         Title = "Select Weapon",
         Values = {"Melee","Sword","Fruit","Gun"},
         Multi = false,
@@ -2619,7 +2619,7 @@ task.spawn(function()
 	end
 	end)
 	
-	local DropdownAttack = Tabs.Sf:AddDropdown("DropdownAttack", {
+	local DropdownAttack = Tabs.SE:AddDropdown("DropdownAttack", {
         Title = "Fast Attack Speed",
         Values = {"0", "0.1", "0.15", "0.155", "0.16", "0.165", "0.17", "0.175", "0.18", "0.185"},
         Multi = false,
@@ -2662,7 +2662,7 @@ spawn(function()
     end
 end)
 
-local ToggleFast = Tabs.Sf:AddToggle("ToggleFast", {Title = "Fast Attack & Fruit",Description = "", Default = true })
+local ToggleFast = Tabs.SE:AddToggle("ToggleFast", {Title = "Fast Attack & Fruit",Description = "", Default = true })
     ToggleFast:OnChanged(function(Value)
         _G.FastAttack = Value
     end)
@@ -2671,7 +2671,7 @@ local ToggleFast = Tabs.Sf:AddToggle("ToggleFast", {Title = "Fast Attack & Fruit
 local Camera = require(game.ReplicatedStorage.Util.CameraShaker)
 Camera:Stop()
 
-		local ToggleBringMob = Tabs.Sf:AddToggle("ToggleBringMob", {Title = "Bring Mob",Description = "", Default = true })
+		local ToggleBringMob = Tabs.SE:AddToggle("ToggleBringMob", {Title = "Bring Mob",Description = "", Default = true })
     ToggleBringMob:OnChanged(function(Value)
         _G.BringMob = Value
     end)
@@ -2717,7 +2717,7 @@ Camera:Stop()
                 end
 																end)
 																
-			local ToggleRemoveNotify = Tabs.Sf:AddToggle("ToggleRemoveNotify", {Title = "Remove Notification",Description = "", Default = false })
+			local ToggleRemoveNotify = Tabs.SE:AddToggle("ToggleRemoveNotify", {Title = "Remove Notification",Description = "", Default = false })
 ToggleRemoveNotify:OnChanged(function(Value)
     RemoveNotify = Value
     end)
@@ -2733,7 +2733,7 @@ ToggleRemoveNotify:OnChanged(function(Value)
         end
     end)
 
-    local ToggleWhite = Tabs.Sf:AddToggle("ToggleWhite", {Title = "White Screen",Description = "", Default = false })
+    local ToggleWhite = Tabs.SE:AddToggle("ToggleWhite", {Title = "White Screen",Description = "", Default = false })
     ToggleWhite:OnChanged(function(Value)
        _G.WhiteScreen = Value
        if _G.WhiteScreen == true then
@@ -2744,7 +2744,7 @@ ToggleRemoveNotify:OnChanged(function(Value)
         end)
         Options.ToggleWhite:SetValue(false)
 								
-				local ToggleRemove = Tabs.Sf:AddToggle("ToggleRemove", {Title = "Remove Dame Text",Description = "", Default = false })
+				local ToggleRemove = Tabs.SE:AddToggle("ToggleRemove", {Title = "Remove Dame Text",Description = "", Default = false })
 ToggleRemove:OnChanged(function(Value)
     _G.RemoveDameText = Value
     end)
@@ -2760,7 +2760,7 @@ ToggleRemove:OnChanged(function(Value)
         end
         end)
 								
-		local ToggleAutoT = Tabs.Sf:AddToggle("ToggleAutoT", {Title = "Turn On V3", Description = "", Default = false })
+		local ToggleAutoT = Tabs.SE:AddToggle("ToggleAutoT", {Title = "Turn On V3", Description = "", Default = false })
 ToggleAutoT:OnChanged(function(Value)
     _G.AutoT = Value
     end)
@@ -2776,7 +2776,7 @@ ToggleAutoT:OnChanged(function(Value)
     end)
 
 
-local ToggleAutoY = Tabs.Sf:AddToggle("ToggleAutoY", {Title = "Turn On V4", Description = "", Default = false })
+local ToggleAutoY = Tabs.SE:AddToggle("ToggleAutoY", {Title = "Turn On V4", Description = "", Default = false })
 ToggleAutoY:OnChanged(function(Value)
     _G.AutoY = Value
 end)
@@ -2795,7 +2795,7 @@ spawn(function()
     end
 end)
 
-local ToggleAutoKen = Tabs.Sf:AddToggle("ToggleAutoKen", {Title = "Auto Ken", Description = "", Default = false })
+local ToggleAutoKen = Tabs.SE:AddToggle("ToggleAutoKen", {Title = "Auto Ken", Description = "", Default = false })
 ToggleAutoKen:OnChanged(function(Value)
     _G.AutoKen = Value
     if Value then
@@ -2817,37 +2817,37 @@ spawn(function()
     end
 				end)						
 				
-	Tabs.Sf:AddParagraph({
+	Tabs.SE:AddParagraph({
     Title = "",
     Content = "Fruit Framing"
 				})				
 			
 			
-local ToggleZ = Tabs.Sf:AddToggle("ToggleZ", {Title = "Skill Z",Description = "", Default = true })
+local ToggleZ = Tabs.SE:AddToggle("ToggleZ", {Title = "Skill Z",Description = "", Default = true })
 ToggleZ:OnChanged(function(Value)
     SkillZ = Value
 end)
 Options.ToggleZ:SetValue(true)
 
-local ToggleX = Tabs.Sf:AddToggle("ToggleX", {Title = "Skill X", Description = "",Default = true })
+local ToggleX = Tabs.SE:AddToggle("ToggleX", {Title = "Skill X", Description = "",Default = true })
 ToggleX:OnChanged(function(Value)
     SkillX = Value
 end)
 Options.ToggleX:SetValue(true)
 
-local ToggleC = Tabs.Sf:AddToggle("ToggleC", {Title = "Skill C",Description = "", Default = true })
+local ToggleC = Tabs.SE:AddToggle("ToggleC", {Title = "Skill C",Description = "", Default = true })
 ToggleC:OnChanged(function(Value)
     SkillC = Value
 end)
 Options.ToggleC:SetValue(true)
 
-local ToggleV = Tabs.Sf:AddToggle("ToggleV", {Title = "Skill V",Description = "", Default = true })
+local ToggleV = Tabs.SE:AddToggle("ToggleV", {Title = "Skill V",Description = "", Default = true })
 ToggleV:OnChanged(function(Value)
     SkillV = Value
 end)
 Options.ToggleV:SetValue(true)
 
-local ToggleF = Tabs.Sf:AddToggle("ToggleF", {Title = "Skill F",Description = "", Default = false })
+local ToggleF = Tabs.SE:AddToggle("ToggleF", {Title = "Skill F",Description = "", Default = false })
 ToggleF:OnChanged(function(Value)
    SkillF = Value
     end)
