@@ -2552,7 +2552,7 @@ end)
 
     local Dropdown = Tabs.Sf:AddDropdown("Dropdown", {
     Title = "Weapon",
-    Values = {"Melee", "Sword", "Fruit"},
+    Values = {"Melee", "Sword"},
     Multi = false,
     Default = 1,
 })
@@ -2582,14 +2582,6 @@ task.spawn(function()
                     if v.ToolTip == "Sword" then
                         if backpack:FindFirstChild(tostring(v.Name)) then
                             _G.SelectWeapon = v.Name
-																								end
-																				end
-															 end
-												elseif _G.SelectWeapon == "Fruit" then
-		            		for i, v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
-				               	if v.ToolTip == "Blox Fruit" then
-					                  	if backpack:FindFirstChild(tostring(v.Name)) then
-					                     		_G.SelectWeapon = v.Name
                         end
                     end
                 end
@@ -2878,3 +2870,67 @@ ToggleF:OnChanged(function(Value)
    SkillF = Value
     end)
 				Options.ToggleF:SetValue(false)
+				
+				Tabs.At:AddParagraph({
+    Title = "",
+    Content = "Auto Framing"
+				})		
+				
+				local ToggleLevel = Tabs.At:AddToggle("ToggleLevel", {
+        Title = "Auto Farm Level",
+        Description = "",
+        Default = false })
+    ToggleLevel:OnChanged(function(Value)
+        _G.AutoLevel = Value
+        if Value == false then
+            wait()
+            toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
+            wait()
+        end
+    end)
+    Options.ToggleLevel:SetValue(false)
+    spawn(function()
+        while task.wait() do
+        if _G.AutoLevel then
+        pcall(function()
+          CheckLevel()
+          if not string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text, NameMon) or game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false then
+          game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
+          toTarget(CFrameQ)
+          if (CFrameQ.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 5 then
+          game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StartQuest",NameQuest,QuestLv)
+          end
+          elseif string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text, NameMon) or game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == true then
+          for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+          if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
+          if v.Name == Ms then
+          repeat wait(_G.Fast_Delay)
+          AttackNoCoolDown()
+          bringmob = true
+          AutoHaki()
+          EquipTool(SelectWeapon)
+          Tween(v.HumanoidRootPart.CFrame * Pos)
+          v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
+          v.HumanoidRootPart.Transparency = 1
+          v.Humanoid.JumpPower = 0
+          v.Humanoid.WalkSpeed = 0
+          v.HumanoidRootPart.CanCollide = false
+          FarmPos = v.HumanoidRootPart.CFrame
+          MonFarm = v.Name
+          until not _G.AutoLevel or not v.Parent or v.Humanoid.Health <= 0 or not game:GetService("Workspace").Enemies:FindFirstChild(v.Name) or game.Players.LocalPlayer.PlayerGui.Main.Quest.Visible == false
+          bringmob = false
+        end   
+          end
+          end
+          for i,v in pairs(game:GetService("Workspace")["_WorldOrigin"].EnemySpawns:GetChildren()) do
+          if string.find(v.Name,NameMon) then
+          if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.Position).Magnitude >= 10 then
+            Tween(v.HumanoidRootPart.CFrame * Pos)
+          end
+          end
+          end
+          end
+          end)
+        end
+        end
+        end)        
