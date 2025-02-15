@@ -2517,13 +2517,7 @@ Tabs.Setting:AddParagraph({
         Content = "Settings To Framing"
 								})
 								
-		local ToggleFast = Tabs.Setting:AddToggle("ToggleFast", {Title = "Fast attack",Description = "", Default = true })
-    ToggleFast:OnChanged(function(Value)
-        _G.FastAttack = Value
-    end)
-    Options.ToggleFast:SetValue(true)
-
-    local ToggleBringMob = Tabs.Setting:AddToggle("ToggleBringMob", {Title = "Bring Mob",Description = "", Default = true })
+	local ToggleBringMob = Tabs.Setting:AddToggle("ToggleBringMob", {Title = "Bring Mob",Description = "", Default = true })
     ToggleBringMob:OnChanged(function(Value)
         _G.BringMob = Value
     end)
@@ -2567,4 +2561,68 @@ Tabs.Setting:AddParagraph({
                             end
                         end)
                 end
-																end)
+																end)							
+								
+		local ToggleAttack = Tabs.Setting:AddToggle("ToggleAttack", {Title = "Fast Attack & Fruit",Description = "", Default = true })
+    ToggleFast:OnChanged(function(Value)
+        _G.FastAttack = Value
+    end)
+    Options.ToggleAttack:SetValue(true)
+				
+				local Camera = require(game.ReplicatedStorage.Util.CameraShaker)Camera:Stop()
+				
+				
+local Dropdown = Tabs.Setting:AddDropdown("Dropdown", {
+        Title = "Select Weapon",
+        Values = {"Melee","Sword","Fruit","Gun"},
+        Multi = false,
+        Default = 1,
+    })
+
+    Dropdown:SetValue("Melee")
+
+    Dropdown:OnChanged(function(Value)
+        _G.SelectWeapon = Value
+    end)
+    
+task.spawn(function()
+	while wait() do
+		pcall(function()
+			if _G.SelectWeapon == "Melee" then
+				for i ,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+					if v.ToolTip == "Melee" then
+						if game.Players.LocalPlayer.Backpack:FindFirstChild(tostring(v.Name)) then
+							_G.SelectWeapon = v.Name
+						end
+					end
+				end
+			elseif _G.SelectWeapon == "Sword" then
+				for i ,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+					if v.ToolTip == "Sword" then
+						if game.Players.LocalPlayer.Backpack:FindFirstChild(tostring(v.Name)) then
+							_G.SelectWeapon = v.Name
+						end
+					end
+				end
+			elseif _G.SelectWeapon == "Gun" then
+				for i ,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+					if v.ToolTip == "Gun" then
+						if game.Players.LocalPlayer.Backpack:FindFirstChild(tostring(v.Name)) then
+							_G.SelectWeapon = v.Name
+						end
+					end
+				end
+			elseif _G.SelectWeapon == "Fruit" then
+				for i ,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+					if v.ToolTip == "Blox Fruit" then
+						if game.Players.LocalPlayer.Backpack:FindFirstChild(tostring(v.Name)) then
+							_G.SelectWeapon = v.Name
+						end
+					end
+				end
+			end
+		end)
+	end
+	end)
+
+    
