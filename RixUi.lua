@@ -2515,11 +2515,6 @@ spawn(function()
     end
 end)
 
-Tabs.Setting:AddParagraph({
-    Title = "",
-    Content = "Settings Framing"
-				})				
-
 Toggle = Tabs.Setting:AddToggle("MyToggle", {Title = "Hide Mobs", Description = "Invisible monster for have better fps", Default = false })
     Toggle:OnChanged(function(Value)
         _G.hadesinvis = Value		
@@ -2655,8 +2650,7 @@ local ToggleFast = Tabs.Setting:AddToggle("ToggleFast", {Title = "Fast attack",D
     end)
     Options.ToggleFast:SetValue(true)
 
-local Camera = require(game.ReplicatedStorage.Util.CameraShaker)
-Camera:Stop()
+local Camera = require(game.ReplicatedStorage.Util.CameraShaker)Camera:Stop()
 
     local ToggleBringMob = Tabs.Setting:AddToggle("ToggleBringMob", {Title = "Bring Mob",Description = "", Default = true })
     ToggleBringMob:OnChanged(function(Value)
