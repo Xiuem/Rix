@@ -41,7 +41,7 @@ local Window = Fluent:CreateWindow({
     Title = "Rix Hub",
     SubTitle = "   Project Tests Programming Skills", 
     TabWidth = 160, 
-    Size = UDim2.fromOffset(480, 480), 
+    Size = UDim2.fromOffset(560, 320), 
     Acrylic = false, 
     Theme = "Darker", 
     MinimizeKey = Enum.KeyCode.End
@@ -2552,7 +2552,7 @@ end)
 
     local Dropdown = Tabs.Sf:AddDropdown("Dropdown", {
     Title = "Weapon",
-    Values = {"Melee", "Sword"},
+    Values = {"Melee", "Sword", "Fruit"},
     Multi = false,
     Default = 1,
 })
