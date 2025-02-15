@@ -2523,9 +2523,6 @@ Tabs.Setting:AddParagraph({
     end)
     Options.ToggleFast:SetValue(true)
 
-local Camera = require(game.ReplicatedStorage.Util.CameraShaker)
-Camera:Stop()
-
     local ToggleBringMob = Tabs.Setting:AddToggle("ToggleBringMob", {Title = "Bring Mob",Description = "", Default = true })
     ToggleBringMob:OnChanged(function(Value)
         _G.BringMob = Value
