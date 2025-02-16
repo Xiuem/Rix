@@ -2513,32 +2513,6 @@ spawn(function()
     end
 end)
 
-                task.spawn(function()
-                    while task.wait() do  
-                        svstats,svstats2 = pcall(function()  
-                            haki1, haki2 = CheckHakiColor()
-                            SV3 = "Player In Server: "..tostring(PlayersCount()).."/"..game.Players.MaxPlayers.."\n".."Server Time: " .. function8().."\nAcient One Status: " .. tostring(CheckAcientOneStatus())..
-                            "\nCake Prince Status: " .. tostring(CheckCakePrinceStatus())..
-                            "\nMirage Puzzle: " .. tostring(CheckGatCan())..
-                            "\nMirage Island: " .. tostring(CheckMirageIslandStatus())..
-                            "\nElite: "..CheckEliteStatus()..
-                            "\nRace: " .. tostring(CheckRace())
-                            if not Sea1 then 
-                                SV3 = SV3.."\nHaki Color: " .. tostring(haki1) .. " | " .. haki2
-																															end
-
-local Server = Tabs.Status:AddParagraph({
-        Title = "Status In Server",
-        Content = SV3
-							}
-                            )
-                        end)
-                        if not svstats then print("sv stats",svstats2)end 
-                    end
-                end)
-            end
-											end  
-
 local Mob_Kill_Cake_Prince = Tabs.Status:AddParagraph({
     Title = "Cake Prince-Katakuri",
     Content = ""
