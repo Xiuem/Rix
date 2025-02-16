@@ -34,8 +34,6 @@ end
 loadSettings()
 
 local Fluent = loadstring(game:HttpGet("https://raw.githubusercontent.com/Knuxy92/Ui-linoria/main/Fluent/Fluent.lua"))()
-local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/Nchanquadi/Smlptessr/main/buybuby.txt"))()
-local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/Nchanquadi/Smlptessr/main/skid%20an%20cac%20do%20em.txt"))()
 
 local Window = Fluent:CreateWindow({
     Title = "Rix Hub",
@@ -2667,24 +2665,56 @@ spawn(function()
         end
     end)
 				end)
+			
+				Tabs.Setting:AddParagraph({
+        Title = "",
+        Content = "Setting Farming"
+								})
+			
+				local Dropdown = Tabs.Setting:AddDropdown("Dropdown", {
+        Title = "Select Weapin",
+        Values = {"Melee","Sword","Fruit"},
+        Multi = false,
+        Default = 1,
+    })
+
+    Dropdown:SetValue("Melee")
+
+    Dropdown:OnChanged(function(Value)
+        _G.SelectWeapon = Value
+    end)
+    
+task.spawn(function()
+	while wait() do
+		pcall(function()
+			if _G.SelectWeapon == "Melee" then
+				for i ,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+					if v.ToolTip == "Melee" then
+						if game.Players.LocalPlayer.Backpack:FindFirstChild(tostring(v.Name)) then
+							_G.SelectWeapon = v.Name
+						end
+					end
+				end
+			elseif _G.SelectWeapon == "Sword" then
+				for i ,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+					if v.ToolTip == "Sword" then
+						if game.Players.LocalPlayer.Backpack:FindFirstChild(tostring(v.Name)) then
+							_G.SelectWeapon = v.Name
+						end
+					end
+				end
+			elseif _G.SelectWeapon == "Fruit" then
+				for i ,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+					if v.ToolTip == "Blox Fruit" then
+						if game.Players.LocalPlayer.Backpack:FindFirstChild(tostring(v.Name)) then
+							_G.SelectWeapon = v.Name
+						end
+					end
+				end
+			end
+		end)
+	end
+	end)
 				
-				Tabs.Config:AddParagraph({
-    Title = "",
-    Content = "Rix Hub Theme"
-				})
 				
-				--]]-- fluent
-InterfaceManager:SetFolder("Rix Hub")
-SaveManager:SetFolder("Rix Hub")
-SaveManager:SetLibrary(Fluent)
-InterfaceManager:SetLibrary(Fluent)
-SaveManager:IgnoreThemeSettings()
-SaveManager:SetIgnoreIndexes({})
-InterfaceManager:BuildInterfaceSection(Tabs.Config)
-SaveManager:BuildConfigSection(Tabs.Config)
-Window:SelectTab(1)
-SaveManager:LoadAutoloadConfig()
---[[
-    end
-    delfolder("Rix Hub")
-				--]]
+				
