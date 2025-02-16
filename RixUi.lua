@@ -2716,8 +2716,8 @@ task.spawn(function()
 	end
 	end)
 				
-local ToggleFast = Tabs.Setting:AddToggle("ToggleFast", {Title = "Fast attack",Description = "", Default = true })
-    ToggleBringMob:OnChanged(function(Value)
+local ToggleFast = Tabs.Setting:AddToggle("ToggleFast", {Title = "Fast Attack & Fruit",Description = "", Default = true })
+    ToggleFast:OnChanged(function(Value)
         _G.FastAttack = Value
     end)
     Options.ToggleFast:SetValue(true)
