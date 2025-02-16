@@ -2514,7 +2514,7 @@ spawn(function()
 end)
 
 local Mob_Kill_Cake_Prince = Tabs.Status:AddParagraph({
-    Title = "Cake Prince-Katakuri",
+    Title = "Cake Prince & Katakuri",
     Content = ""
 })
 
@@ -2522,13 +2522,13 @@ spawn(function()
 	while wait() do
 		pcall(function()
 			if string.len(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CakePrinceSpawner")) == 88 then
-				Mob_Kill_Cake_Prince:SetDesc("Katakuri: "..string.sub(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CakePrinceSpawner"),39,41).."")
+				Mob_Kill_Cake_Prince:SetDesc("Cake Prince-Katakuri: "..string.sub(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CakePrinceSpawner"),39,41).."")
 			elseif string.len(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CakePrinceSpawner")) == 87 then
-				Mob_Kill_Cake_Prince:SetDesc("Katakuri: "..string.sub(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CakePrinceSpawner"),39,40).."")
+				Mob_Kill_Cake_Prince:SetDesc("Cake Prince-Katakuri: "..string.sub(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CakePrinceSpawner"),39,40).."")
 			elseif string.len(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CakePrinceSpawner")) == 86 then
-				Mob_Kill_Cake_Prince:SetDesc("Katakuri: "..string.sub(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CakePrinceSpawner"),39,39).." ")
+				Mob_Kill_Cake_Prince:SetDesc("Cake Prince-Katakuri: "..string.sub(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CakePrinceSpawner"),39,39).." ")
 			else
-				Mob_Kill_Cake_Prince:SetDesc("Cake Prince : 🟢")
+				Mob_Kill_Cake_Prince:SetDesc("Cake Prince-Katakuri : 🟢")
 			end
 		end)
 	end
