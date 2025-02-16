@@ -33,9 +33,7 @@ end
 
 loadSettings()
 
-local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
-local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
-local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
+local Fluent = loadstring(game:HttpGet("https://raw.githubusercontent.com/Knuxy92/Ui-linoria/main/Fluent/Fluent.lua"))()
 
 local Window = Fluent:CreateWindow({
     Title = "Rix Hub",
@@ -43,7 +41,7 @@ local Window = Fluent:CreateWindow({
     TabWidth = 160, 
     Size = UDim2.fromOffset(580, 320), 
     Acrylic = false, 
-    Theme = "Darker", 
+    Theme = "Normal Theme", 
     MinimizeKey = Enum.KeyCode.End
 })
 
@@ -56,6 +54,7 @@ Fluent:Notify({
 				
 local Tabs = {
 	   Status = Window:AddTab({ Title = "Status" }),
+				Setting = Window:AddTab({ Title = "Setting Fram" }),
 				AutoFram = Window:AddTab({ Title = "Auto Fram" }),
     Local = Window:AddTab({ Title = "Local Player" }),
     Shop = Window:AddTab({ Title = "Shop" }),
@@ -66,7 +65,6 @@ local Tabs = {
     Sea = Window:AddTab({ Title = "Sea Event" }),
 				Item = Window:AddTab({ Title = "Quest & Item" }),
 				Config = Window:AddTab({ Title = "Config Ui" }),
-				Setting = Window:AddTab({ Title = "Setting Fram" }),
 }
 local Options = Fluent.Options
 
@@ -2612,3 +2610,19 @@ pcall(function()
     end
 end)
 end)	
+
+--]]-- fluent
+InterfaceManager:SetFolder("Rix Hub")
+SaveManager:SetFolder("Rix Hub")
+SaveManager:SetLibrary(Fluent)
+InterfaceManager:SetLibrary(Fluent)
+SaveManager:IgnoreThemeSettings()
+SaveManager:SetIgnoreIndexes({})
+InterfaceManager:BuildInterfaceSection(Tabs.Config)
+SaveManager:BuildConfigSection(Tabs.Config)
+Window:SelectTab(1)
+SaveManager:LoadAutoloadConfig()
+--[[
+    end
+    delfolder("Rix Hub")
+				--]]
