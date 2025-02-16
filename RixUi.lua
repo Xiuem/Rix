@@ -2534,8 +2534,8 @@ spawn(function()
 	end
 end)
 
-local FM = Tabs.Status:AddParagraph({
-        Title = "Full Moon",
+local FM = Tabs.Statux:AddParagraph({
+        Title = "Moon",
         Content = ""
     })
     
@@ -2559,11 +2559,3 @@ local FM = Tabs.Status:AddParagraph({
             end
     end)
     
-			function MoonTextureId()if TravelMain then return game:GetService("Lighting").FantasySky.MoonTextureId elseif TravelDressrosa then return game:GetService("Lighting").FantasySky.MoonTextureId elseif TravelZou then return game:GetService("Lighting").Sky.MoonTextureId end;if game:GetService("Lighting"):FindFirstChild("FantasySky")then return game:GetService("Lighting").FantasySky.MoonTextureId elseif game:GetService("Lighting"):FindFirstChild("Sky")then return game:GetService("Lighting").Sky.MoonTextureId end end;function CheckMoon()moon8="http://www.roblox.com/asset/?id=9709150401"moon7="http://www.roblox.com/asset/?id=9709150086"moon6="http://www.roblox.com/asset/?id=9709149680"moon5="http://www.roblox.com/asset/?id=9709149431"moon4="http://www.roblox.com/asset/?id=9709149052"moon3="http://www.roblox.com/asset/?id=9709143733"moon2="http://www.roblox.com/asset/?id=9709139597"moon1="http://www.roblox.com/asset/?id=9709135895"moonreal=MoonTextureId()cofullmoonkothangbeo="Bad Moon"if moonreal==moon5 or moonreal==moon4 then if moonreal==moon5 then return"Full Moon"elseif moonreal==moon4 then return"Next Night"end end;return cofullmoonkothangbeo end;function function6()return math.floor(game.Lighting.ClockTime)end;function getServerTime()RealTime=tostring(math.floor(game.Lighting.ClockTime*100)/100)RealTime=tostring(game.Lighting.ClockTime)RealTimeTable=RealTime:split(".")Minute,Second=RealTimeTable[1],tonumber(0+tonumber(RealTimeTable[2]/100))*60;return Minute,Second end;function function8()local a=game.Lighting;local a=a.ClockTime;if CheckMoon()=="Full Moon"and a<=5 then return tostring(function6()).." ( Will End Moon In "..math.floor(5-a).." Minutes )"elseif CheckMoon()=="Full Moon"and(a>5 and a<12)then return tostring(function6()).." ( Fake Moon )"elseif CheckMoon()=="Full Moon"and(a>12 and a<18)then return tostring(function6()).." ( Will Full Moon In "..math.floor(18-a).." Minutes )"elseif CheckMoon()=="Full Moon"and(a>18 and a<=24)then return tostring(function6()).." ( Will End Moon In "..math.floor(24+6-a).." Minutes )"end;if CheckMoon()=="Next Night"and a<12 then return tostring(function6()).." ( Will Full Moon In "..math.floor(18-a).." Minutes )"elseif CheckMoon()=="Next Night"and a>12 then return tostring(function6()).." ( Will Full Moon In "..math.floor(18+12-a).." Minutes )"end;return tostring(function6())end;
-	local a=Tabs.Status:AddParagraph({
-		Title="Server Status :",
-		Content="Mirage : "..MirageIslandCheck().." \nKitsune : "..KitsuneIslandCheck().." \nFull Moon : "..CheckMoon().." \nServer Time : "..getServerTime().." - Full Moon : "..function8()..""})spawn(function()while wait()do a:SetDesc("Mirage : "..MirageIslandCheck().." \nKitsune : "..KitsuneIslandCheck().." \nFull Moon : "..CheckMoon().." \nServer Time : "..getServerTime().." - Full Moon : "..function8().."")end end)function CheckMaterialCount()local a={}for b,b in pairs(game:GetService("ReplicatedStorage").Remotes["CommF_"]:InvokeServer("getInventory"))do if b["Type"]=="Material"then table.insert(a,b.Name.." : "..b["Count"])end end;local a=table.concat(a,"\n")return a end;
-	local a=Tabs.Status:AddParagraph({
-		Title="Material Inventory :",
-		Content=CheckMaterialCount()})spawn(function()while wait(5)do a:SetDesc(CheckMaterialCount())end end)
-		
