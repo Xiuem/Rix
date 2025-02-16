@@ -2716,6 +2716,15 @@ task.spawn(function()
 	end
 	end)
 
+	local ToggleFast = Tabs.Setting:AddToggle("ToggleFast", {Title = "Fast Attack & Fruit",Description = "", Default = true })
+    ToggleFast:OnChanged(function(Value)
+        _G.FastAttack = Value
+    end)
+    Options.ToggleFast:SetValue(true)
+
+local Camera = require(game.ReplicatedStorage.Util.CameraShaker)
+
+	
     local ToggleBringMob = Tabs.Setting:AddToggle("ToggleBringMob", {Title = "Bring Mob",Description = "", Default = true })
     ToggleBringMob:OnChanged(function(Value)
         _G.BringMob = Value
@@ -2794,12 +2803,4 @@ ToggleRemoveNotify:OnChanged(function(Value)
         end
 								end)	
 				
-	local ToggleFast = Tabs.Setting:AddToggle("ToggleFast", {Title = "Fast Attack & Fruit",Description = "", Default = true })
-    ToggleFast:OnChanged(function(Value)
-        _G.FastAttack = Value
-    end)
-    Options.ToggleFast:SetValue(true)
-
-local Camera = require(game.ReplicatedStorage.Util.CameraShaker)
-Camera:Stop()							
-				
+							
