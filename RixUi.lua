@@ -2513,7 +2513,6 @@ spawn(function()
     end
 end)
 
-if Third_Sea then
 local Mob_Kill_Cake_Prince = Tabs.Status:AddParagraph({
     Title = "Cake Prince & Katakuri",
     Content = ""
@@ -2535,7 +2534,6 @@ spawn(function()
 	end
 end)
 
-if Third_Sea then
 local FM = Tabs.Status:AddParagraph({
         Title = "Moon",
         Content = ""
@@ -2561,7 +2559,7 @@ local FM = Tabs.Status:AddParagraph({
             end
     end)
 		
-		if Third_Sea then		
+		 
 			local BoneCheck = Tabs.Status:AddParagraph({
         Title = "Total Bone",
         Content = ""
@@ -2575,7 +2573,6 @@ local FM = Tabs.Status:AddParagraph({
         end
 								end)
 								
-			if Third_Sea then
     local BribeLeviathan = Tabs.Status:AddParagraph({
         Title = "Status Leviathan",
         Content = ""
@@ -2598,7 +2595,7 @@ local FM = Tabs.Status:AddParagraph({
     end)
 end
 
-			if Third_Sea then				
+			 		
 				local FrozenIsland = Tabs.Status:AddParagraph({
     Title = "Frozen Dimension",
     Content = ""
