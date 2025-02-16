@@ -2623,36 +2623,3 @@ pcall(function()
     end
 end)
 end)
-
-local Kitsune = Tabs.Status:AddParagraph({
-        Title = "Kitsune",
-        Content = ""
-    })
-    
-    spawn(function()
-        pcall(function()
-            while wait() do
-    if game:GetService("Workspace").Map:FindFirstChild("KitsuneIsland") then
-    Kitsune:SetDesc('🟢')
-    else
-      Kitsune:SetDesc('🔴' )
-            end
-               end
-        end)
-end)
-
-    local Mirragecheck = Tabs.Status:AddParagraph({
-        Title = "Mirrage Island",
-        Content = ""
-    })
-    
-    spawn(function()
-        pcall(function()
-            while wait() do
-    if game.Workspace._WorldOrigin.Locations:FindFirstChild('Mirage Island') then
-    Mirragecheck:SetDesc('🟢')
-    else
-      Mirragecheck:SetDesc('🔴' )end
-            end
-        end)
-								end)
