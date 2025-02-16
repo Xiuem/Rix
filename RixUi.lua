@@ -2571,4 +2571,20 @@ local FM = Tabs.Status:AddParagraph({
         end
 								end)
 								
-								
+				local Prehistoric = Tabs.Status:AddParagraph({
+    Title = "Prehistoric Island",
+    Content = ""
+})
+
+spawn(function()
+    pcall(function()
+        while wait() do
+            -- Kiểm tra sự tồn tại của "Prehistoric Island" trong Locations của _WorldOrigin
+            if game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Prehistoric Island") then
+                Prehistoric:SetDesc("Prehistoric Island: 🟢")
+            else
+                Prehistoric:SetDesc("Prehistoric Island: 🔴")
+            end
+        end
+    end)
+				end)
