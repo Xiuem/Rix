@@ -2534,7 +2534,7 @@ spawn(function()
 	end
 end)
 
-local FM = Tabs.Statux:AddParagraph({
+local FM = Tabs.Status:AddParagraph({
         Title = "Moon",
         Content = ""
     })
@@ -2558,4 +2558,16 @@ local FM = Tabs.Statux:AddParagraph({
                 end)
             end
     end)
+				
+			local BoneCheck = Tabs.Status:AddParagraph({
+        Title = "Total Bone",
+        Content = ""
+    })
     
+    spawn(function()
+        while wait() do
+            pcall(function()
+                BoneCheck:SetDesc("Your Bone : "..(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Bones","Check")))
+            end)
+        end
+								end)
