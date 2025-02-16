@@ -37,7 +37,7 @@ local Fluent = loadstring(game:HttpGet("https://raw.githubusercontent.com/Knuxy9
 
 local Window = Fluent:CreateWindow({
     Title = "Rix Hub",
-    SubTitle = "   Project Tests Programming Skills", 
+    SubTitle = " by realrix!", 
     TabWidth = 160, 
     Size = UDim2.fromOffset(580, 320), 
     Acrylic = false, 
@@ -47,7 +47,7 @@ local Window = Fluent:CreateWindow({
 
 Fluent:Notify({
     Title = "! Rix",
-    Content = "Project Tests",
+    Content = "Project Tests Programming Skills",
     SubContent = "@"..game.Players.LocalPlayer.Name.." wait Script load..", -- Optional
     Duration = 5 -- Set to nil to make the notification not disappear
 				})
@@ -2715,15 +2715,6 @@ task.spawn(function()
 		end)
 	end
 	end)
-				
-local ToggleFast = Tabs.Setting:AddToggle("ToggleFast", {Title = "Fast Attack & Fruit",Description = "", Default = true })
-    ToggleFast:OnChanged(function(Value)
-        _G.FastAttack = Value
-    end)
-    Options.ToggleFast:SetValue(true)
-
-local Camera = require(game.ReplicatedStorage.Util.CameraShaker)
-Camera:Stop()
 
     local ToggleBringMob = Tabs.Setting:AddToggle("ToggleBringMob", {Title = "Bring Mob",Description = "", Default = true })
     ToggleBringMob:OnChanged(function(Value)
@@ -2771,7 +2762,7 @@ Camera:Stop()
                 end
             end)
 
-local ToggleRemove = Tabs.Setting:AddToggle("ToggleRemove", {Title = "Remove Dame",Description = "", Default = false })
+local ToggleRemove = Tabs.Setting:AddToggle("ToggleRemove", {Title = "Remove Dame Text",Description = "", Default = false })
 ToggleRemove:OnChanged(function(Value)
     _G.RemoveDameText = Value
     end)
@@ -2803,4 +2794,12 @@ ToggleRemoveNotify:OnChanged(function(Value)
         end
 								end)	
 				
+	local ToggleFast = Tabs.Setting:AddToggle("ToggleFast", {Title = "Fast Attack & Fruit",Description = "", Default = true })
+    ToggleFast:OnChanged(function(Value)
+        _G.FastAttack = Value
+    end)
+    Options.ToggleFast:SetValue(true)
+
+local Camera = require(game.ReplicatedStorage.Util.CameraShaker)
+Camera:Stop()							
 				
