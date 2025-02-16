@@ -2512,6 +2512,33 @@ spawn(function()
         end
     end
 end)
+
+                task.spawn(function()
+                    while task.wait() do  
+                        svstats,svstats2 = pcall(function()  
+                            haki1, haki2 = CheckHakiColor()
+                            SV3 = "Player In Server: "..tostring(PlayersCount()).."/"..game.Players.MaxPlayers.."\n".."Server Time: " .. function8().."\nAcient One Status: " .. tostring(CheckAcientOneStatus())..
+                            "\nCake Prince Status: " .. tostring(CheckCakePrinceStatus())..
+                            "\nMirage Puzzle: " .. tostring(CheckGatCan())..
+                            "\nMirage Island: " .. tostring(CheckMirageIslandStatus())..
+                            "\nElite: "..CheckEliteStatus()..
+                            "\nRace: " .. tostring(CheckRace())
+                            if not Sea1 then 
+                                SV3 = SV3.."\nHaki Color: " .. tostring(haki1) .. " | " .. haki2
+																															end
+
+local Server = Tabs.Status:AddParagraph({
+        Title = "Status In Server",
+        Content = SV3
+							}
+                            )
+                        end)
+                        if not svstats then print("sv stats",svstats2)end 
+                    end
+                end)
+            end
+											end  
+
 local Mob_Kill_Cake_Prince = Tabs.Status:AddParagraph({
     Title = "Cake Prince-Katakuri",
     Content = ""
@@ -2521,14 +2548,122 @@ spawn(function()
 	while wait() do
 		pcall(function()
 			if string.len(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CakePrinceSpawner")) == 88 then
-				Mob_Kill_Cake_Prince:SetDesc("Cạke Prince-Katakuri: "..string.sub(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CakePrinceSpawner"),39,41).."")
+				Mob_Kill_Cake_Prince:SetDesc("Katakuri: "..string.sub(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CakePrinceSpawner"),39,41).."")
 			elseif string.len(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CakePrinceSpawner")) == 87 then
-				Mob_Kill_Cake_Prince:SetDesc("Cake Prince-Katakuri: "..string.sub(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CakePrinceSpawner"),39,40).."")
+				Mob_Kill_Cake_Prince:SetDesc("Katakuri: "..string.sub(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CakePrinceSpawner"),39,40).."")
 			elseif string.len(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CakePrinceSpawner")) == 86 then
-				Mob_Kill_Cake_Prince:SetDesc("Cake Prince-Katakuri: "..string.sub(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CakePrinceSpawner"),39,39).." ")
+				Mob_Kill_Cake_Prince:SetDesc("Katakuri: "..string.sub(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CakePrinceSpawner"),39,39).." ")
 			else
 				Mob_Kill_Cake_Prince:SetDesc("Cake Prince : 🟢")
 			end
 		end)
 	end
 end)
+
+local Elite_Hunter_Status = Tabs.Status:AddParagraph({
+        Title = "Elite Status",
+        Content = ""
+    })
+
+
+	spawn(function()
+		while wait() do
+			spawn(function()
+				if game:GetService("ReplicatedStorage"):FindFirstChild("Diablo") or game:GetService("ReplicatedStorage"):FindFirstChild("Deandre") or game:GetService("ReplicatedStorage"):FindFirstChild("Urban") or game:GetService("Workspace").Enemies:FindFirstChild("Diablo") or game:GetService("Workspace").Enemies:FindFirstChild("Deandre") or game:GetService("Workspace").Enemies:FindFirstChild("Urban") then
+					Elite_Hunter_Status:SetDesc("Status : 🟢")	
+				else
+					Elite_Hunter_Status:SetDesc("Status : 🔴")	
+				end
+			end)
+		end
+	end)
+    
+local Prehistoric = Tabs.Status:AddParagraph({
+    Title = "Status Prehistoric Island",
+    Content = ""
+})
+
+spawn(function()
+    pcall(function()
+        while wait() do
+            -- Kiểm tra sự tồn tại của "Prehistoric Island" trong Locations của _WorldOrigin
+            if game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Prehistoric Island") then
+                Prehistoric:SetDesc("Prehistoric Island: 🟢")
+            else
+                Prehistoric:SetDesc("Prehistoric Island: 🔴")
+            end
+        end
+    end)
+				end)	
+	
+    local Kitsune = Tabs.Status:AddParagraph({
+        Title = "Kitsune Island",
+        Content = ""
+    })
+    
+    spawn(function()
+        pcall(function()
+            while wait() do
+    if game:GetService("Workspace").Map:FindFirstChild("KitsuneIsland") then
+    Kitsune:SetDesc('🟢')
+    else
+      Kitsune:SetDesc('🔴' )
+            end
+               end
+        end)
+end)
+    
+    local BribeLeviathan = Tabs.Status:AddParagraph({
+        Title = "Bribe Leviathan",
+        Content = ""
+    })
+    
+    spawn(function()
+        pcall(function()
+            while wait() do
+                local bribeStatus = game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("InfoLeviathan", "1")
+                
+                if bribeStatus == 5 then
+                    BribeLeviathan:SetDesc("Leviathan Is Out There")
+                elseif bribeStatus == 0 then
+                    BribeLeviathan:SetDesc("I Don't Know")
+                else
+                    BribeLeviathan:SetDesc("Buy Bribe: " .. tostring(bribeStatus))
+                end
+            end
+        end)
+    end)
+			end
+    
+			local FrozenIsland = Tabs.Status:AddParagraph({
+        Title = "Frozen Dimension",
+        Content = ""
+    })
+    
+    spawn(function()
+    pcall(function()
+        while wait() do
+            if game.Workspace._WorldOrigin.Locations:FindFirstChild('Frozen Dimension') then
+                FrozenIsland:SetDesc('🟢')
+            else
+                FrozenIsland:SetDesc('🔴')
+            end
+        end
+    end)
+				end)
+			
+    local Mirragecheck = Tabs.Status:AddParagraph({
+        Title = "Mirrage Island",
+        Content = ""
+    })
+    
+    spawn(function()
+        pcall(function()
+            while wait() do
+    if game.Workspace._WorldOrigin.Locations:FindFirstChild('Mirage Island') then
+    Mirragecheck:SetDesc('🟢')
+    else
+      Mirragecheck:SetDesc('🔴' )end
+            end
+        end)
+								end)
