@@ -2571,43 +2571,4 @@ local FM = Tabs.Status:AddParagraph({
         end
 								end)
 								
-    local BribeLeviathan = Tabs.Status:AddParagraph({
-        Title = "Status Leviathan",
-        Content = ""
-    })
-    
-    spawn(function()
-        pcall(function()
-            while wait() do
-                local bribeStatus = game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("InfoLeviathan", "1")
-                
-                if bribeStatus == 5 then
-                    BribeLeviathan:SetDesc("Leviathan Is Out There")
-                elseif bribeStatus == 0 then
-                    BribeLeviathan:SetDesc("I Don't Know")
-                else
-                    BribeLeviathan:SetDesc("Buy Bribe: " .. tostring(bribeStatus))
-                end
-            end
-        end)
-    end)
-end
-
-			 		
-				local FrozenIsland = Tabs.Status:AddParagraph({
-    Title = "Frozen Dimension",
-    Content = ""
-})
-
-spawn(function()
-pcall(function()
-    while wait() do
-        if game:GetService("Workspace").Map:FindFirstChild("FrozenDimension") then
-            FrozenIsland:SetDesc('🟢')
-        else
-            FrozenIsland:SetDesc('🔴')
-        end
-    end
-end)
-end)	
-
+								
