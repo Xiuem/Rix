@@ -2611,6 +2611,11 @@ pcall(function()
 end)
 end)	
 
+Tabs.Config:AddParagraph({
+    Title = "U Can Try New Theme",
+    Content = "Rix Hub Theme"
+				})
+
 --]]-- fluent
 InterfaceManager:SetFolder("Rix Hub")
 SaveManager:SetFolder("Rix Hub")
