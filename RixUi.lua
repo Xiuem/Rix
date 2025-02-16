@@ -2581,9 +2581,9 @@ spawn(function()
         while wait() do
             -- Kiểm tra sự tồn tại của "Prehistoric Island" trong Locations của _WorldOrigin
             if game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Prehistoric Island") then
-                Prehistoric:SetDesc("Prehistoric: 🟢")
+                Prehistoric:SetDesc('🟢')
             else
-                Prehistoric:SetDesc("Prehistoric: 🔴")
+                Prehistoric:SetDesc('🔴')
             end
         end
     end)
@@ -2646,3 +2646,22 @@ local StatusMirage = Tabs.Status:AddParagraph({
             end
         end)
 								end)
+								
+	local StatusKitsune = Tabs.Status:AddParagraph({
+    Title = "Kitsune Island",
+    Content = ""
+})
+function UpdateKitsune()
+    if game.Workspace._WorldOrigin.Locations:FindFirstChild('Kitsune Island') or game:GetService("Workspace").Map:FindFirstChild('KitsuneIsland') then
+        StatusKitsune:SetDesc('🟢')
+    else
+        StatusKitsune:SetDesc('🔴')
+     end
+end
+spawn(function()
+    pcall(function()
+        while wait() do
+            UpdateKitsune()
+        end
+    end)
+				end)
