@@ -2623,3 +2623,20 @@ pcall(function()
     end
 end)
 end)
+
+local StatusMirage = Tabs.Status:AddParagraph({
+        Title = "Status Mirage",
+        Content = ""
+    })
+
+    task.spawn(function()
+        while task.wait() do
+            pcall(function()
+                if game.Workspace._WorldOrigin.Locations:FindFirstChild("Mirage Island") then
+                    MirageStatus = "🟢"
+                else
+                    MirageStatus = "🔴"
+                end
+            end)
+        end
+								end)
