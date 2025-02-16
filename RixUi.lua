@@ -2572,7 +2572,7 @@ local FM = Tabs.Status:AddParagraph({
 								end)
 								
 				local Prehistoric = Tabs.Status:AddParagraph({
-    Title = "Prehistoric Island",
+    Title = "Prehistoric",
     Content = ""
 })
 
@@ -2581,10 +2581,45 @@ spawn(function()
         while wait() do
             -- Kiểm tra sự tồn tại của "Prehistoric Island" trong Locations của _WorldOrigin
             if game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Prehistoric Island") then
-                Prehistoric:SetDesc("Prehistoric Island: 🟢")
+                Prehistoric:SetDesc("Prehistoric: 🟢")
             else
-                Prehistoric:SetDesc("Prehistoric Island: 🔴")
+                Prehistoric:SetDesc("Prehistoric: 🔴")
             end
         end
     end)
 				end)
+				
+			local Elite_Hunter_Status = Tabs.Status:AddParagraph({
+    Title = "Elite",
+    Content = ""
+})
+
+
+spawn(function()
+    while wait() do
+        spawn(function()
+            if game:GetService("ReplicatedStorage"):FindFirstChild("Diablo") or game:GetService("ReplicatedStorage"):FindFirstChild("Deandre") or game:GetService("ReplicatedStorage"):FindFirstChild("Urban") or game:GetService("Workspace").Enemies:FindFirstChild("Diablo") or game:GetService("Workspace").Enemies:FindFirstChild("Deandre") or game:GetService("Workspace").Enemies:FindFirstChild("Urban") then
+                Elite_Hunter_Status:SetDesc("🟢")    
+            else
+                Elite_Hunter_Status:SetDesc("🔴")    
+            end
+        end)
+    end
+end)
+
+local FrozenIsland = Tabs.Status:AddParagraph({
+    Title = "Leviathan",
+    Content = ""
+})
+
+spawn(function()
+pcall(function()
+    while wait() do
+        if game:GetService("Workspace").Map:FindFirstChild("FrozenDimension") then
+            FrozenIsland:SetDesc('🟢')
+        else
+            FrozenIsland:SetDesc('🔴')
+        end
+    end
+end)
+end)
