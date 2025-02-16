@@ -2611,23 +2611,3 @@ pcall(function()
 end)
 end)	
 
-Tabs.Config:AddParagraph({
-    Title = "U Can Try New Theme",
-    Content = "Rix Hub Theme"
-				})
-
---]]-- fluent
-InterfaceManager:SetFolder("Rix Hub")
-SaveManager:SetFolder("Rix Hub")
-SaveManager:SetLibrary(Fluent)
-InterfaceManager:SetLibrary(Fluent)
-SaveManager:IgnoreThemeSettings()
-SaveManager:SetIgnoreIndexes({})
-InterfaceManager:BuildInterfaceSection(Tabs.Config)
-SaveManager:BuildConfigSection(Tabs.Config)
-Window:SelectTab(1)
-SaveManager:LoadAutoloadConfig()
---[[
-    end
-    delfolder("Rix Hub")
-				--]]
