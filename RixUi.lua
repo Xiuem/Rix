@@ -2534,21 +2534,224 @@ spawn(function()
 	end
 end)
 
-Tabs.Status:AddParagraph({
-	Title="Shop Devils Fruits :",
-	Content="Fruits On Sale : "..table.concat(ShopDevilSell,",")})function CheckRace()local a=game.ReplicatedStorage.Remotes.CommF_:InvokeServer("Wenlocktoad","1")local b=game.ReplicatedStorage.Remotes.CommF_:InvokeServer("Alchemist","1")if game.Players.LocalPlayer.Character:FindFirstChild("RaceTransformed")then return game:GetService("Players").LocalPlayer.Data.Race.Value.." V4"end;if a==-2 then return game:GetService("Players").LocalPlayer.Data.Race.Value.." V3"end;if b==-2 then return game:GetService("Players").LocalPlayer.Data.Race.Value.." V2"end;return game:GetService("Players").LocalPlayer.Data.Race.Value.." V1"end;
-	Tabs.Status:AddParagraph({
-		Title="Players Status :",
-		Content="Name : "..game.Players.LocalPlayer.Name.." \n Level : "..game.Players.LocalPlayer.Data.Level.Value.." \n Race : "..CheckRace().." \n Beli : "..game.Players.LocalPlayer.Data.Beli.Value.." \n Fragments : "..game.Players.LocalPlayer.Data.Fragments.Value.." Bounty : "..tostring(game:GetService("Players").LocalPlayer.leaderstats["Bounty/Honor"].Value)..""})if TravelZou then function CheckKatakuri(a)if string.len(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CakePrinceSpawner"))==88 then a:SetDesc("Killed : "..string.sub(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CakePrinceSpawner"),39,41)..' / 500')elseif string.len(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CakePrinceSpawner"))==87 then a:SetDesc("Killed : "..string.sub(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CakePrinceSpawner"),39,40)..' / 500')elseif string.len(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CakePrinceSpawner"))==86 then a:SetDesc("Killed : "..string.sub(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CakePrinceSpawner"),39,39)..' / 500')else a:SetDesc("Katakuri : 🟢")end end;
-local a=Tabs.Status:AddParagraph({
-	Title="Dough King - Katakuri Status :",
-	Content=""})
-	spawn(function()
-	while wait()do CheckKatakuri(a)end end)end;function MirageIslandCheck()if game.Workspace._WorldOrigin.Locations:FindFirstChild('Mirage Island')then return"✅"else return"❌"end;return"❌"end;function KitsuneIslandCheck()if game.Workspace.Map:FindFirstChild("KitsuneIsland")then return"✅"else return"❌"end;return"❌"end;function MoonTextureId()if TravelMain then return game:GetService("Lighting").FantasySky.MoonTextureId elseif TravelDressrosa then return game:GetService("Lighting").FantasySky.MoonTextureId elseif TravelZou then return game:GetService("Lighting").Sky.MoonTextureId end;if game:GetService("Lighting"):FindFirstChild("FantasySky")then return game:GetService("Lighting").FantasySky.MoonTextureId elseif game:GetService("Lighting"):FindFirstChild("Sky")then return game:GetService("Lighting").Sky.MoonTextureId end end;function CheckMoon()moon8="http://www.roblox.com/asset/?id=9709150401"moon7="http://www.roblox.com/asset/?id=9709150086"moon6="http://www.roblox.com/asset/?id=9709149680"moon5="http://www.roblox.com/asset/?id=9709149431"moon4="http://www.roblox.com/asset/?id=9709149052"moon3="http://www.roblox.com/asset/?id=9709143733"moon2="http://www.roblox.com/asset/?id=9709139597"moon1="http://www.roblox.com/asset/?id=9709135895"moonreal=MoonTextureId()cofullmoonkothangbeo="Bad Moon"if moonreal==moon5 or moonreal==moon4 then if moonreal==moon5 then return"Full Moon"elseif moonreal==moon4 then return"Next Night"end end;return cofullmoonkothangbeo end;function function6()return math.floor(game.Lighting.ClockTime)end;function getServerTime()RealTime=tostring(math.floor(game.Lighting.ClockTime*100)/100)RealTime=tostring(game.Lighting.ClockTime)RealTimeTable=RealTime:split(".")Minute,Second=RealTimeTable[1],tonumber(0+tonumber(RealTimeTable[2]/100))*60;return Minute,Second end;function function8()local a=game.Lighting;local a=a.ClockTime;if CheckMoon()=="Full Moon"and a<=5 then return tostring(function6()).." ( Will End Moon In "..math.floor(5-a).." Minutes )"elseif CheckMoon()=="Full Moon"and(a>5 and a<12)then return tostring(function6()).." ( Fake Moon )"elseif CheckMoon()=="Full Moon"and(a>12 and a<18)then return tostring(function6()).." ( Will Full Moon In "..math.floor(18-a).." Minutes )"elseif CheckMoon()=="Full Moon"and(a>18 and a<=24)then return tostring(function6()).." ( Will End Moon In "..math.floor(24+6-a).." Minutes )"end;if CheckMoon()=="Next Night"and a<12 then return tostring(function6()).." ( Will Full Moon In "..math.floor(18-a).." Minutes )"elseif CheckMoon()=="Next Night"and a>12 then return tostring(function6()).." ( Will Full Moon In "..math.floor(18+12-a).." Minutes )"end;return tostring(function6())end;
-	local a=Tabs.Status:AddParagraph({
-		Title="Server Status :",
-		Content="Mirage : "..MirageIslandCheck().." \nKitsune : "..KitsuneIslandCheck().." \nFull Moon : "..CheckMoon().." \nServer Time : "..getServerTime().." - Full Moon : "..function8()..""})spawn(function()while wait()do a:SetDesc("Mirage : "..MirageIslandCheck().." \nKitsune : "..KitsuneIslandCheck().." \nFull Moon : "..CheckMoon().." \nServer Time : "..getServerTime().." - Full Moon : "..function8().."")end end)function CheckMaterialCount()local a={}for b,b in pairs(game:GetService("ReplicatedStorage").Remotes["CommF_"]:InvokeServer("getInventory"))do if b["Type"]=="Material"then table.insert(a,b.Name.." : "..b["Count"])end end;local a=table.concat(a,"\n")return a end;
-	local a=Tabs.Status:AddParagraph({
-		Title="Material Inventory :",
-		Content=CheckMaterialCount()})spawn(function()while wait(5)do a:SetDesc(CheckMaterialCount())end end)
-		
+function MoonTextureId()
+            if Sea1 then
+                return game:GetService("Lighting").FantasySky.MoonTextureId
+            elseif Sea2 then
+                return game:GetService("Lighting").FantasySky.MoonTextureId
+            elseif Sea3 then
+                return game:GetService("Lighting").Sky.MoonTextureId
+            end
+        end
+        function CheckMoon()
+            moon8 = "http://www.roblox.com/asset/?id=9709150401"
+            moon7 = "http://www.roblox.com/asset/?id=9709150086"
+            moon6 = "http://www.roblox.com/asset/?id=9709149680"
+            moon5 = "http://www.roblox.com/asset/?id=9709149431"
+            moon4 = "http://www.roblox.com/asset/?id=9709149052"
+            moon3 = "http://www.roblox.com/asset/?id=9709143733"
+            moon2 = "http://www.roblox.com/asset/?id=9709139597"
+            moon1 = "http://www.roblox.com/asset/?id=9709135895"
+            moonreal = MoonTextureId()
+            cofullmoonkothangbeo = "Bad Moon"
+            if moonreal == moon5 or moonreal == moon4 then
+                if moonreal == moon5 then
+                    cofullmoonkothangbeo = "Full Moon"
+                elseif moonreal == moon4 then
+                    cofullmoonkothangbeo = "Next Night"
+                end
+            end
+            return cofullmoonkothangbeo
+        end
+        function mmbs(inp, c2)
+            ps = inp - c2
+            if ps > 1 then
+                return math.floor(ps) .. " Minutes"
+            else
+                return math.floor(ps * 60) .. " Seconds"
+            end
+        end    
+        function CheckHakiColor()
+            local v141, v142 = game.ReplicatedStorage.Remotes.CommF_:InvokeServer("ColorsDealer", "1")
+            if not v141 or v141 == 1 then
+                return "None", "0\198\146"
+            end
+            if v141 ~= 1 then
+                return v141, tostring(v142) .. "\198\146"
+            end
+        end  
+        function CheckElite()
+            return CheckMob(Elites, true)
+        end
+        function CheckEliteStatus()
+            if not Sea3 or not CheckElite() then
+                return "❌"
+            end
+            return "✅"
+        end
+        function CheckRace()
+            local v113 = game.ReplicatedStorage.Remotes.CommF_:InvokeServer("Wenlocktoad", "1")
+            local v111 = game.ReplicatedStorage.Remotes.CommF_:InvokeServer("Alchemist", "1")
+            if game.Players.LocalPlayer.Character:FindFirstChild("RaceTransformed") then
+                return game:GetService("Players").LocalPlayer.Data.Race.Value .. " V4"
+            end
+            if v113 == -2 then
+                return game:GetService("Players").LocalPlayer.Data.Race.Value .. " V3"
+            end
+            if v111 == -2 then
+                return game:GetService("Players").LocalPlayer.Data.Race.Value .. " V2"
+            end
+            return game:GetService("Players").LocalPlayer.Data.Race.Value .. " V1"
+        end 
+        function CheckBoss(bossname)
+            bossname = RemoveLevelTitle(bossname)
+            for i, v in pairs(game:GetService("ReplicatedStorage"):GetChildren()) do
+                if RemoveLevelTitle(v.Name) == bossname and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
+                    return v
+                end
+            end 
+            for i, v in pairs(game.workspace.Enemies:GetChildren()) do
+                if RemoveLevelTitle(v.Name) == bossname and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
+                    return v
+                end
+            end
+        end 
+        function ClaimQuestV3()
+            local v113 = game.ReplicatedStorage.Remotes.CommF_:InvokeServer("Wenlocktoad", "1")
+            if v113 == 0 then
+                game.ReplicatedStorage.Remotes.CommF_:InvokeServer("Wenlocktoad", "2")
+                wait(.1)
+                Notify(nil, "Claimed Quest V3", 10)
+            elseif v113 == -1 then
+                Notify(nil, "Leak of 2mill neli")
+            end
+        end
+        function CheckCakePrinceStatus()
+            ab, bb =
+                pcall(
+                function()
+                    if not Sea3 then
+                        return "Not Found"
+                    end
+                    if CheckBoss("Cake Prince [Lv. 2300] [Raid Boss]") or CheckBoss("Dough King [Lv. 2300] [Raid Boss]") then
+                        if CheckBoss("Cake Prince [Lv. 2300] [Raid Boss]") then
+                            return "Cake Prince Spawned"
+                        end
+                        if CheckBoss("Dough King [Lv. 2300] [Raid Boss]") then
+                            return "Dough King Spawned"
+                        end
+                    else
+                        return tonumber(
+                            string.match(game.ReplicatedStorage.Remotes.CommF_:InvokeServer("CakePrinceSpawner", true), "%d+")
+                        ) .. " Mobs Remaining..."
+                    end
+                end
+            )
+            if ab then
+                return bb
+            end
+            return "None"
+        end
+        function CheckGatCan()
+            if game.ReplicatedStorage.Remotes.CommF_:InvokeServer("CheckTempleDoor") then
+                return "✅"
+            end
+            return "❌"
+        end 
+        function PlayersCount()
+            return #game.Players:GetChildren()
+        end 
+        
+        function function8()
+            local c = game.Lighting
+            local c2 = c.ClockTime
+            if CheckMoon() == "Full Moon" and c2 <= 5 then
+                return tostring(function6()) .. " ( Will End Moon In " .. mmbs(5, c2).." )"
+            elseif CheckMoon() == "Full Moon" and (c2 > 5 and c2 < 12) then
+                return tostring(function6()) .. " ( Fake Moon )"
+            elseif CheckMoon() == "Full Moon" and (c2 > 12 and c2 < 18) then
+                return tostring(function6()) .. " ( Will Full Moon In " .. mmbs(18, c2).." )"
+            elseif CheckMoon() == "Full Moon" and (c2 > 18 and c2 <= 24) then
+                return tostring(function6()) .. " ( Will End Moon In " .. mmbs(30, c2).." )"
+            end
+            if CheckMoon() == "Next Night" and c2 < 12 then
+                return tostring(function6()) .. " ( Will Full Moon In " .. mmbs(18, c2).." )"
+            elseif CheckMoon() == "Next Night" and c2 > 12 then
+                return tostring(function6()) .. " ( Will Full Moon In " .. mmbs(18 + 24, c2).." )"
+            end
+            return tostring(function6())
+        end
+        function CheckMirageIslandStatus()
+            if not Sea3 or not game:GetService("Workspace").Map:FindFirstChild("MysticIsland") then
+                return "❌"
+            end
+            return "✅ "..tostring(math.floor(GetDistance(getHighestPoint()))/10).."m away"
+        end
+        function function7()
+            GameTime = "Error"
+            local c = game.Lighting
+            local c2 = c.ClockTime
+            if c2 >= 18 or c2 < 5 then
+                GameTime = "Night"
+            else
+                GameTime = "Day"
+            end
+            return GameTime
+        end
+        function function6()
+            return math.floor(game.Lighting.ClockTime)
+        end
+        function getServerTime()
+            RealTime = tostring(math.floor(game.Lighting.ClockTime * 100) / 100)
+            RealTime = tostring(game.Lighting.ClockTime)
+            RealTimeTable = RealTime:split(".")
+            Minute, Second = RealTimeTable[1], tonumber((0 + tonumber(RealTimeTable[2] / 100))) * 60
+            return Minute, Second
+        end     
+        function CheckAcientOneStatus()
+            if not game.Players.LocalPlayer.Character:FindFirstChild("RaceTransformed") then
+                return "You have yet to achieve greatness"
+            end
+            local v227 = nil
+            local v228 = nil
+            local v229 = nil
+            v229, v228, v227 = game.ReplicatedStorage.Remotes.CommF_:InvokeServer("UpgradeRace", "Check")
+            if v229 == 1 then
+                return "Required Train More"
+            elseif v229 == 2 or v229 == 4 or v229 == 7 then
+                return "Can Buy Gear With " .. v227 .. "\198\146"
+            elseif v229 == 3 then
+                return "Required Train More"
+            elseif v229 == 5 then
+                return "You Are Done Your Race."
+            elseif v229 == 6 then
+                return "Upgrades completed: " .. v228 - 2 .. "/3, Need Trains More"
+            end
+            if v229 ~= 8 then
+                if v229 == 0 then
+                    return "Ready For Trial"
+                else
+                    return "You have yet to achieve greatness"
+                end
+            end
+            return "Remaining " .. 10 - v228 .. " training sessions."
+												end
+
+local FM = Tabs.Status:AddParagraph({
+        Title = "~Full Moon~",
+        Content = ""
+								})
+
+					task.spawn(function()
+                    while task.wait() do  
+                        svstats,svstats2 = pcall(function()  
+                            haki1, haki2 = CheckHakiColor()
+                            SV3 = "Player In Server: "..tostring(PlayersCount()).."/"..game.Players.MaxPlayers.."\n".."Server Time: " .. function8().."\nAcient One Status: " .. tostring(CheckAcientOneStatus())..
+                            "\nCake Prince Status: " .. tostring(CheckCakePrinceStatus())..
+                            "\nMirage Puzzle: " .. tostring(CheckGatCan())..
+                            "\nMirage Island: " .. tostring(CheckMirageIslandStatus())..
+                            "\nElite: "..CheckEliteStatus()..
+                            "\nRace: " .. tostring(CheckRace())
+                            if not Sea1 then 
+                                SV3 = SV3.."\nHaki Color: " .. tostring(haki1) .. " | " .. haki2
+																															end			
