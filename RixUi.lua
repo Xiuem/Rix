@@ -2640,29 +2640,6 @@ local Kitsune = Tabs.Status:AddParagraph({
                end
         end)
 end)
-    
-  local BribeLeviathan = Tabs.Status:AddParagraph({
-        Title = "Status Leviathan",
-        Content = ""
-    })
-    
-    spawn(function()
-        pcall(function()
-            while wait() do
-                local bribeStatus = game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("InfoLeviathan", "1")
-                
-                if bribeStatus == 5 then
-                    BribeLeviathan:SetDesc("Leviathan Is Out There")
-                elseif bribeStatus == 0 then
-                    BribeLeviathan:SetDesc("I Don't Know")
-                else
-                    BribeLeviathan:SetDesc("Buy: " .. tostring(bribeStatus))
-                end
-            end
-        end)
-    end)
-end
-
 
     local Mirragecheck = Tabs.Status:AddParagraph({
         Title = "Mirrage Island",
